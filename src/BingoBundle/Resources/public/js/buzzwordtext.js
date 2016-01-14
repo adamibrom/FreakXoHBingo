@@ -72,7 +72,7 @@
 	"70": "Apple politik oder produkt wird verklärt oder schoen geredet",
 	"71": "und ueberhaupt wird exakt erwähnt",
 	"72": "Open Source, quelloffen oder freie software werden erwähnt",
-	"73": "die chinesen werden in jeglichem kntext erwähnt",
+	"73": "die chinesen werden in jeglichem kontext erwähnt",
 	"74": "Fefe oder verschwoerungs theorien werden erwähnt",
 	"75": "'Wir prangern das an' oder grammatikalisch ähnlich",
 	"76": "freebsd wir exakt erwähnt",
@@ -80,7 +80,13 @@
 	"78": "kleinkuhkackerode wird exakt erwähnt",
 	"79": "'Wir fordern zukunft', 'in zukunft' oder ähnlich",
 	"80": "das wort fnord fällt oder ein fnord wird besprochen",
-	"81": "",
-	"82": ""	
+	"81": "Es wird Mate erwähnt",
+	"82": "Rauter im sinne von Netzwerk Router",
+	"83": "Das skaliert oder eskaliert",
+	"84": "Der Techniker ist informiert meme",
+	"85": "Etwas wird als funktional kaputt bezeichnet",	
+	"86": "El Cheapo im Sinne von Billig",
+	"87": "Es wird ueber Raumfahrt gesprochen",	
+	"88": "Rein zufällig als auspruch"	
       };
   

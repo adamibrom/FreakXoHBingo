@@ -22,7 +22,7 @@ $(document).ready(function () {
         },
 
         // Anzahl der Buzzwords +1 wegen Freifeld
-        buzzwordCount: 81
+        buzzwordCount: 89
     };
 
     var timeoutArray = new Array(49);
@@ -714,9 +714,9 @@ $(document).ready(function () {
                                 // idx = integerwert der geklickten zelle
                                 var idx = parseInt($(that).attr('data-id'));
                                 // geklickete Zelle in bingoCard true setzen
-                                model.bingoCard[idx] = true;
-                                checkWin(model.bingoCard);
-                                $('#score').html('<div style="width: 198px" id="scoreback">' + pad(totalScore, 6) + '</div>');
+                                // model.bingoCard[idx] = true;
+                                // checkWin(model.bingoCard);
+                                // $('#score').html('<div style="width: 198px" id="scoreback">' + pad(totalScore, 6) + '</div>');
                                 buzzwordConfirmed[id_img] = true;
                                 buzzwordBusy[id_img] = false;
                             } else {

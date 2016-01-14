@@ -77,15 +77,20 @@ freebsd
 wir prangern das an
 "glasfaser", >> Mokkel im Chat
 kleinkuhkackerode >> Roddi in der Sendung
-Future
+Future "Ich will endlich Zukunft"
 fnord
+Mate
+Rauter
+Das skaliert
+Techniker ist informiert
+"kaputt / funktional kaputt" 
+el cheapo
+Raumfahrt
         <<^tiles für beta2 bereits erstellt>>
 
-Das skaliert
-el cheepo
+
+
 "country oder western" und 
-"Ich will endlich Zukunft"
-"kaputt / funktional kaputt" 
 raaaiiinnn zufällig
 
 
@@ -106,12 +111,3 @@ Eigentlich könnte Apple ...
 Arsch!
 soo in etwa
 Selbst schuld
-
-
-
-feature requests:
-
-
-
-Nächster Commit:
-Freifeld immer ausgewählt
