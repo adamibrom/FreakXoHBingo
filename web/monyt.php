@@ -1,175 +1,286 @@
 <?php
+/**
+ * Monyt server script returns linux system information to display in your app
+ */
+error_reporting(1);
 
-error_reporting(0);
+// Use authentication
+// If set to TRUE best choice only works with Monyt PRO
+// If set to FALSE no authentication
+define('USE_AUTHENTICATION', false);
+define('ADMIN_USERNAME', 'monyt');
+//  PUT A PASSWORD THIS TO ENABLE AUTHENTICATION!!!
+define('ADMIN_PASSWORD', '');
 
-define( "MONYT_SCRIPT_VERSION", "1.0.1" );
+//////////////// DO NOT MODIFY FROM HERE ///////////////////
 
-if( isset($_GET['version'] ) )
-{
-    die( MONYT_SCRIPT_VERSION );
-}
-else if( isset($_GET['check']) )
-{
-    $aCheck = array
+// authentication needed?
+if (
+    USE_AUTHENTICATION === true
+    &&
+    !empty(ADMIN_PASSWORD)
+    &&
     (
-        'monyt' => MONYT_SCRIPT_VERSION,
-        'distro' => '',
-        'kernel' => '',
-        'cpu' => '',
-        'cores' => ''
-    );
-    
-    $sDistroName = '';
-    $sDistroVer  = '';
+        !isset($_SERVER['PHP_AUTH_USER'])
+        ||
+        !isset($_SERVER['PHP_AUTH_PW'])
+        ||
+        $_SERVER['PHP_AUTH_USER'] != ADMIN_USERNAME
+        ||
+        $_SERVER['PHP_AUTH_PW'] != ADMIN_PASSWORD
+    )
+) {
+    header("WWW-Authenticate: Basic realm=\"Monyt Login\"");
+    header("HTTP/1.0 401 Unauthorized");
 
-    foreach (glob("/etc/*_version") as $filename) 
-    {
-        list( $sDistroName, $dummy ) = explode( '_', basename($filename) );
-
-        $sDistroName = ucfirst($sDistroName);
-        $sDistroVer  = trim( file_get_contents($filename) );
-        
-        $aCheck['distro'] = "$sDistroName $sDistroVer";
-        break;
-    }
-    
-    if( !$aCheck['distro'] )
-    {
-        if( file_exists( '/etc/issue' ) )
-        {
-            $lines = file('/etc/issue');
-            $aCheck['distro'] = trim( $lines[0] );
-        }
-        else
-        {
-            $output = NULL;
-            exec( "uname -om", $output );
-            $aCheck['distro'] = trim( implode( ' ', $output ) );
-        }
-    }
-    
-    $cpu = file( '/proc/cpuinfo' );
-    $vendor = NULL;
-    $model = NULL;
-    $cores = 0;
-    foreach( $cpu as $line )
-    {
-        if( preg_match( '/^vendor_id\s*:\s*(.+)$/i', $line, $m ) )
-        {
-            $vendor = $m[1];
-        }
-        else if( preg_match( '/^model\s+name\s*:\s*(.+)$/i', $line, $m ) )
-        {
-            $model = $m[1];
-        }
-        else if( preg_match( '/^processor\s*:\s*\d+$/i', $line ) )
-        {
-            $cores++;
-        }
-    }
-    
-    $aCheck['cpu']    = "$vendor, $model";
-    $aCheck['cores']  = $cores;
-    $aCheck['kernel'] = trim(file_get_contents("/proc/version"));
-    
-    die( json_encode($aCheck) );
+    die('<html><body><h1>Auth needed!</h1><h2>Wrong Username or Password!</h2></body></html>');
 }
+// end auth
 
-$aStats = array( 'monyt' => MONYT_SCRIPT_VERSION );
 
 
-$aStats['uptime'] = trim( file_get_contents("/proc/uptime") );
-
-$load = file_get_contents("/proc/loadavg");
-$load = explode( ' ', $load );
-
-$aStats['load'] = $load[0].', '.$load[1].', '.$load[2];
-
-$memory = file( '/proc/meminfo' );
-foreach( $memory as $line )
+/**
+ * Monyt Class
+ * returns linux system information to display in your app
+ *
+ * @see     monyt.net
+ * @author  Chema Garrido <chema@garridodiaz.com>
+ * @license GPL v3
+ */
+class Monyt
 {
-    $line = trim($line);
-    
-    if( preg_match( '/^memtotal[^\d]+(\d+)[^\d]+$/i', $line, $m ) )
+
+    const VERSION = '2.0.0';
+
+    /**
+     * get server status
+     *
+     * @return array
+     */
+    public static function server_status()
     {
-        $aStats['total_memory'] = $m[1];
-    }
-    else if( preg_match( '/^memfree[^\d]+(\d+)[^\d]+$/i', $line, $m ) )
-    {
-        $aStats['free_memory'] = $m[1];
-    }
-}
+        $aStats['monyt'] = self::VERSION;
 
-$aStats['hd'] = array();
+        $aStats['uptime'] = trim(file_get_contents("/proc/uptime"));
+        $aStats['uptime_human'] = self::uptime_human($aStats['uptime']);
 
-foreach( file('/proc/mounts') as $mount )
-{
-    $mount = trim($mount);
-    if( $mount && $mount[0] == '/' )
-    {
-        $parts = explode( ' ', $mount );
-        if( $parts[0] != $parts[1] )
-        {
-            $device = $parts[0];
-            $folder = $parts[1];
-            $total  = disk_total_space($folder) / 1024;
-            $free   = disk_free_space($folder) / 1024;
+        // processor usage
+        $load = explode(' ', file_get_contents("/proc/loadavg"));
 
-            if( $total > 0 )
-            {
-                $used   = $total - $free;
-                $used_perc = ( $used * 100.0 ) / $total;
+        $aStats['load'] = $load[0] . ', ' . $load[1] . ', ' . $load[2];
 
-                $aStats['hd'][] = array
-                (
-                    'dev' => $device,
-                    'total' => $total,
-                    'used' => $used,
-                    'free' => $free,
-                    'used_perc' => $used_perc,
-                    'mount' => $folder
-                );
+        // memory info
+        foreach (file('/proc/meminfo') as $line) {
+            $line = trim($line);
+
+            if (preg_match('/^memtotal[^\d]+(\d+)[^\d]+$/i', $line, $m)) {
+                $aStats['total_memory'] = $m[1];
+            } else if (preg_match('/^memfree[^\d]+(\d+)[^\d]+$/i', $line, $m)) {
+                $aStats['free_memory'] = $m[1];
             }
         }
-    }
-}
 
-$ifname = NULL;
+        // new memory stats
+        $aStats['memory'] = array(
+            'total' => $aStats['total_memory'],
+            'free' => $aStats['free_memory'],
+            'used' => $aStats['total_memory'] - $aStats['free_memory'],
+            'percent' => round($aStats['used_memory'] * 100 / $aStats['total_memory'], 2)
+        );
 
-if( file_exists('/etc/network/interfaces') )
-{
-    foreach( file('/etc/network/interfaces') as $line )
-    {
-        $line = trim($line);
+        // hard disks info
+        $aStats['hd'] = array();
 
-        if( preg_match( '/^iface\s+([^\s]+)\s+inet\s+.+$/', $line, $m ) && $m[1] != 'lo' )
-        {
-            $ifname = $m[1];
-            break;
+        foreach (file('/proc/mounts') as $mount) {
+            $mount = trim($mount);
+            if ($mount && $mount[0] == '/') {
+                $parts = explode(' ', $mount);
+                if ($parts[0] != $parts[1]) {
+                    $device = $parts[0];
+                    $folder = $parts[1];
+                    $total = disk_total_space($folder) / 1024;
+                    $free = disk_free_space($folder) / 1024;
+
+                    if ($total > 0) {
+                        $used = $total - $free;
+                        $used_perc = ($used * 100.0) / $total;
+
+                        $aStats['hd'][] = array
+                        (
+                            'dev' => $device,
+                            'total' => $total,
+                            'used' => $used,
+                            'free' => $free,
+                            'used_perc' => $used_perc,
+                            'mount' => $folder
+                        );
+                    }
+                }
+            }
         }
-    }
-}
-else
-{
-    foreach( glob('/sys/class/net/*') as $filename )
-    {
-        if( $filename != '/sys/class/net/lo' && file_exists( "$filename/statistics/rx_bytes" ) && trim( file_get_contents("$filename/statistics/rx_bytes") ) != '0' )
-		{
-			$parts = explode( '/', $filename );
-            $ifname = array_pop( $parts );
+
+        // networks info && stats usage
+        $ifname = null;
+        $aStats['net_rx'] = 0;
+        $aStats['net_tx'] = 0;
+
+        if (file_exists('/etc/network/interfaces')) {
+            foreach (file('/etc/network/interfaces') as $line) {
+                $line = trim($line);
+
+                if (preg_match('/^iface\s+([^\s]+)\s+inet\s+.+$/', $line, $m) && $m[1] != 'lo') {
+                    $ifname = $m[1];
+                    break;
+                }
+            }
+        } else {
+            foreach (glob('/sys/class/net/*') as $filename) {
+                if (
+                    $filename != '/sys/class/net/lo' && file_exists("$filename/statistics/rx_bytes")
+                    &&
+                    trim(
+                        file_get_contents(
+                            "$filename/statistics/rx_bytes"
+                        )
+                    ) != '0'
+                ) {
+                    $parts = explode('/', $filename);
+                    $ifname = array_pop($parts);
+                }
+            }
         }
+
+        if ($ifname != null) {
+            $aStats['net_rx'] = trim(file_get_contents("/sys/class/net/$ifname/statistics/rx_bytes"));
+            $aStats['net_tx'] = trim(file_get_contents("/sys/class/net/$ifname/statistics/tx_bytes"));
+        }
+
+        return $aStats;
+    }
+
+    /**
+     * server information
+     *
+     * @return array
+     */
+    public static function server_info()
+    {
+        $aCheck = array
+        (
+            'monyt' => self::VERSION,
+            'distro' => '',
+            'kernel' => '',
+            'cpu' => '',
+            'cores' => '',
+            'memory' => '',
+        );
+
+        ///// Get distro name && verion /////
+        $sDistroName = '';
+        $sDistroVer = '';
+
+        //for ubuntu....
+        if (file_exists('/etc/lsb-release')) {
+            $distro = parse_ini_file('/etc/lsb-release');
+            $aCheck['distro'] = $distro['DISTRIB_DESCRIPTION'] . ', ' . $distro['DISTRIB_CODENAME'];
+        }
+
+        if (!$aCheck['distro']) {
+            foreach (glob("/etc/*_version") as $filename) {
+                list($sDistroName, $dummy) = explode('_', basename($filename));
+
+                $sDistroName = ucfirst($sDistroName);
+                $sDistroVer = trim(file_get_contents($filename));
+
+                $aCheck['distro'] = "$sDistroName $sDistroVer";
+                break;
+            }
+        }
+
+        if (!$aCheck['distro']) {
+            if (file_exists('/etc/issue')) {
+                $lines = file('/etc/issue');
+                $aCheck['distro'] = trim($lines[0]);
+            } else {
+                $output = null;
+                exec("uname -om", $output);
+                $aCheck['distro'] = trim(implode(' ', $output));
+            }
+        }
+
+        ///// Get CPU Information /////
+        $cpu = file('/proc/cpuinfo');
+        $vendor = null;
+        $model = null;
+        $cores = 0;
+        foreach ($cpu as $line) {
+            if (preg_match('/^vendor_id\s*:\s*(.+)$/i', $line, $m)) {
+                $vendor = $m[1];
+            } elseif (preg_match('/^model\s+name\s*:\s*(.+)$/i', $line, $m)) {
+                $model = $m[1];
+            } elseif (preg_match('/^processor\s*:\s*\d+$/i', $line)) {
+                $cores++;
+            }
+        }
+
+        $aCheck['cpu'] = "$vendor, $model";
+        $aCheck['cores'] = $cores;
+        $aCheck['kernel'] = trim(file_get_contents("/proc/version"));
+
+        //memory info
+        foreach (file('/proc/meminfo') as $line) {
+            $line = trim($line);
+
+            if (preg_match('/^memtotal[^\d]+(\d+)[^\d]+$/i', $line, $m)) {
+                $aCheck['memory'] = ROUND($m[1] / 1000 / 1000, 2);
+                break;
+            }
+        }
+
+        return $aCheck;
+    }
+
+    /**
+     * @param $uptime
+     * @return string
+     */
+    public static function uptime_human($uptime)
+    {
+        $uptime = explode(' ', $uptime);
+
+        return self::secondsToTime(round($uptime[0]), 0);
+    }
+
+    /**
+     * @param $seconds
+     * @return string
+     */
+    public static function secondsToTime($seconds)
+    {
+        $dtF = new DateTime("@0");
+        $dtT = new DateTime("@$seconds");
+
+        return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes && %s seconds');
     }
 }
 
-if( $ifname != NULL )
-{
-    $aStats['net_rx'] = trim( file_get_contents("/sys/class/net/$ifname/statistics/rx_bytes") );
-    $aStats['net_tx'] = trim( file_get_contents("/sys/class/net/$ifname/statistics/tx_bytes") );
-}
-else
-{
-    $aStats['net_rx'] = 
-    $aStats['net_tx'] = 0;
+// only returns the monyt version
+if (isset($_GET['version'])) {
+    $return = Monyt::VERSION;
+} // returns information about the server
+elseif (isset($_GET['check'])) {
+    $return = Monyt::server_info();
+} //monitoring status
+else {
+    $return = Monyt::server_status();
 }
 
-die( json_encode( $aStats ) );
+// debug variable
+if (isset($_GET['debug'])) {
+    die(print_r($return, 1));
+} else {
+    //output json information
+    header('Content-type: text/json');
+    header('Content-type: application/json');
+    die(json_encode($return));
+}
