@@ -3,6 +3,7 @@
 namespace BingoBundle\Controller;
 
 // these import the "@Route", "@Method", "@ParamConverter" and "@Template" annotations...
+use Propel\Runtime\ActiveQuery\Criteria;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -94,7 +95,7 @@ class RestClickController extends AbstractRestController
             }
 
             $click = ClickQuery::create()
-                ->orderByTimeCreate(Criteia::DESC)
+                ->orderByTimeCreate(Criteria::DESC)
                 ->findOneByCard($clickRequestData['card']);
             $click->delete();
         }
