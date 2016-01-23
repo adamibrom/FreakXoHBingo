@@ -2,6 +2,7 @@
 
 namespace BingoBundle\Manager;
 
+use BingoBundle\Propel\Click;
 use BingoBundle\Propel\ClickQuery;
 use BingoBundle\Propel\Map\ClickTableMap;
 use Propel\Runtime\ActiveQuery\Criteria;
@@ -95,5 +96,29 @@ class ClicksManager
         $clickResult = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         return $clickResult;
+    }
+
+    /**
+     * @param Click $card
+     */
+    public function deleteCard($card){
+
+
+        $delete = "
+        DELETE FROM logintime t1
+   JOIN
+    (
+     SELECT MAX(datetime)
+      AS max_dt
+      FROM logintime
+      WHERE user_id = 1
+    ) t2
+WHERE t1.datetime  = t2.max_dt
+   AND card = {$card->get}
+   ";
+        $con = Propel::getConnection();
+        $stmt = $con->prepare($delete);
+        return $stmt->execute();
+
     }
 }

@@ -23,3 +23,13 @@ then
     app/console propel:build
     echo "${underline}${green}All Propel generated data created!${reset}"
 fi
+
+#read -p "${orange}Recreate base db with Propel (y/n)? ${reset}"
+#if [ "$REPLY" == "y" ]
+#then
+#    # Create base db with propel
+#    #app/console propel:database:drop --force
+#    #app/console propel:database:create
+#    #app/console propel:sql:insert --force
+#    echo "${underline}${green}No! This is to dangerous! All data will be lost! Make sure you have a backup first and run the commands by hand!${reset}"
+#fi

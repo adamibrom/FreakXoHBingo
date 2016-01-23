@@ -261,13 +261,13 @@ $(document).ready(function () {
             }
         });
 
-	$(document).keydown(function (evt) { // c Taste an captionOff binden
+        $(document).keydown(function (evt) { // c Taste an captionOff binden
             if (!playMode) {
                 if (evt.keyCode == 82) {
-		  userRejectedNum = 0;
-		  resetUserdata();
-		  $("#BuzzwordsBody td").removeClass('rote_zelle');
-		  $("#BingoBody td").removeClass('rote_zelle');
+                    userRejectedNum = 0;
+                    resetUserdata();
+                    $("#BuzzwordsBody td").removeClass('rote_zelle');
+                    $("#BingoBody td").removeClass('rote_zelle');
                 }
             }
         });
@@ -277,7 +277,7 @@ $(document).ready(function () {
                 var idx = parseInt($(this).attr('data-img-id'));
                 if (idx != '0') {
                     placeCaptionLeftOfMousecourser = false;
-                    $('#buzzwordText').html('<img src="'+ config.srcImg + '/' + idx + '.svg" height="150px" width="150px" align="left">' + BuzzwordText[idx]);
+                    $('#buzzwordText').html('<img src="' + config.srcImg + '/' + idx + '.svg" height="150px" width="150px" align="left">' + BuzzwordText[idx]);
                     $('#buzzwordText').removeClass('buzzwordTextEmpty');
                     $('#buzzwordText').addClass('buzzwordTextFilled');
                 }
@@ -296,7 +296,7 @@ $(document).ready(function () {
                 var idx = parseInt($(this).attr('data-img-id'));
                 if (!isNaN(idx)) {
                     placeCaptionLeftOfMousecourser = true;
-                    $('#buzzwordText').html('<img src="'+ config.srcImg + '/' + idx + '.svg" height="150px" width="150px" align="right">' + BuzzwordText[idx]);
+                    $('#buzzwordText').html('<img src="' + config.srcImg + '/' + idx + '.svg" height="150px" width="150px" align="right">' + BuzzwordText[idx]);
                     $('#buzzwordText').removeClass('buzzwordTextEmpty');
                     $('#buzzwordText').addClass('buzzwordTextFilled');
                 }
@@ -415,7 +415,7 @@ $(document).ready(function () {
                         }
                     }
                 } else {
-                  var id_img = parseInt($(this).attr('data-img-id'));
+                    var id_img = parseInt($(this).attr('data-img-id'));
 
                     var buzzwordBusyToNum = _.reduce(buzzwordBusy, function (result, val, idx) {
                         if (val) {
@@ -437,27 +437,27 @@ $(document).ready(function () {
                         // -- AJAX POST REQUEST :: BEGIN ---------------------------------------------------------------
 
                         // Buzzword id_img in DB schreiben
-		  if (!buzzwordConfirmed[id_img]) {			
-                        $.ajax({
-                            type: 'POST',
-                            url: host + '/rest/click',
-                            crossDomain: false,
-                            data: JSON.stringify({card: id_img}),
-                            contentType: 'application/json; charset=utf-8',
-                            dataType: 'json',
-                            async: true,
-                            success: function (bingoResponseData) {
-                                bingoResponseData.clicks.forEach(function (entry) {
-                                    if (entry.clicks >= 5) {
-                                        buzzwordConfirmed[entry.card] = true;
-                                    }
-                                });
-                            },
-                            error: function (bingoResponseData, textStatus, errorThrown) {
-                                alert("Ajax failed to fetch data")
-                            }
-                        });
-		  }
+                        if (!buzzwordConfirmed[id_img]) {
+                            $.ajax({
+                                type: 'POST',
+                                url: host + '/rest/click',
+                                crossDomain: false,
+                                data: JSON.stringify({card: id_img}),
+                                contentType: 'application/json; charset=utf-8',
+                                dataType: 'json',
+                                async: true,
+                                success: function (bingoResponseData) {
+                                    bingoResponseData.clicks.forEach(function (entry) {
+                                        if (entry.clicks >= 5) {
+                                            buzzwordConfirmed[entry.card] = true;
+                                        }
+                                    });
+                                },
+                                error: function (bingoResponseData, textStatus, errorThrown) {
+                                    alert("Ajax failed to fetch data")
+                                }
+                            });
+                        }
 
                         // -- AJAX POST REQUEST :: END -----------------------------------------------------------------
 
@@ -475,13 +475,13 @@ $(document).ready(function () {
 
                             // simulierter probabilistik erfolg -> ENTER DB ABFRAGE HERE!
                             /*
-                            if (timeoutExit >= 5) {
-                                buzzwordConfirmed[id_img] = true;
-                            }
-                            */
+                             if (timeoutExit >= 5) {
+                             buzzwordConfirmed[id_img] = true;
+                             }
+                             */
 
                             // -- AJAX GET REQUEST :: BEGIN --------------------------------------------------------
-                             $.ajax({
+                            $.ajax({
                                 type: 'GET',
                                 url: host + '/rest/clicks',
                                 crossDomain: false,
@@ -489,21 +489,21 @@ $(document).ready(function () {
                                 contentType: 'application/json; charset=utf-8',
                                 dataType: 'json',
                                 async: true,
-                                success: function(bingoResponseData){
-                                    bingoResponseData.clicks.forEach(function(entry) {
+                                success: function (bingoResponseData) {
+                                    bingoResponseData.clicks.forEach(function (entry) {
                                         if (entry.clicks >= 5) {
                                             buzzwordConfirmed[entry.card] = true;
                                         } else {
                                             //buzzwordConfirmed[entry.card] = true;
-					    console.log('entry.clicks ' + entry.clicks);
-					    console.log('entry.card ' + entry.card);
-					    console.log(bingoResponseData);
+                                            console.log('entry.clicks ' + entry.clicks);
+                                            console.log('entry.card ' + entry.card);
+                                            console.log(bingoResponseData);
                                         }
-                                        
+
                                     });
                                 }
-                            });	
-			     
+                            });
+
                             $.ajax({
                                 type: 'GET',
                                 url: host + '/rest/click',
@@ -512,8 +512,8 @@ $(document).ready(function () {
                                 contentType: 'application/json; charset=utf-8',
                                 dataType: 'json',
                                 async: true,
-                                success: function(bingoResponseData){
-                                    bingoResponseData.clicks.forEach(function(entry) {
+                                success: function (bingoResponseData) {
+                                    bingoResponseData.clicks.forEach(function (entry) {
                                         if (entry.clicks >= 5) {
                                             buzzwordConfirmed[entry.card] = true;
                                         }
@@ -529,7 +529,7 @@ $(document).ready(function () {
                             }
 
                             if (buzzwordConfirmed[id_img]) {
-				clearTimeout(checkBuzzword);
+                                clearTimeout(checkBuzzword);
                                 $(that).removeClass("orange_zelle");
                                 $(that).removeClass("question");
                                 $(that).removeClass("pulse-button");
@@ -554,7 +554,7 @@ $(document).ready(function () {
                             }
                         }());
                     }
-		    
+
                 }
             }
         });
@@ -583,10 +583,10 @@ $(document).ready(function () {
                         //console.log(userRejectedNum);
                         //console.log(userRejected);
                     }
-		} else {
-		  var id_img = parseInt($(this).attr('data-img-id'));
-		  
-		                  
+                } else {
+                    var id_img = parseInt($(this).attr('data-img-id'));
+
+
                     var buzzwordBusyToNum = _.reduce(buzzwordBusy, function (result, val, idx) {
                         if (val) {
                             result.push(idx);
@@ -607,27 +607,27 @@ $(document).ready(function () {
                         // -- AJAX POST REQUEST :: BEGIN ---------------------------------------------------------------
 
                         // Buzzword id_img in DB schreiben
-			if (!buzzwordConfirmed[id_img]) { 
-                        $.ajax({
-                            type: 'POST',
-                            url: host + '/rest/click',
-                            crossDomain: false,
-                            data: JSON.stringify({card: id_img}),
-                            contentType: 'application/json; charset=utf-8',
-                            dataType: 'json',
-                            async: true,
-                            success: function (bingoResponseData) {
-                                bingoResponseData.clicks.forEach(function (entry) {
-                                    if (entry.clicks >= 5) {
-                                        buzzwordConfirmed[entry.card] = true;
-                                    }
-                                });
-                            },
-                            error: function (bingoResponseData, textStatus, errorThrown) {
-                                alert("Ajax failed to fetch data")
-                            }
-                        });
-			}
+                        if (!buzzwordConfirmed[id_img]) {
+                            $.ajax({
+                                type: 'POST',
+                                url: host + '/rest/click',
+                                crossDomain: false,
+                                data: JSON.stringify({card: id_img}),
+                                contentType: 'application/json; charset=utf-8',
+                                dataType: 'json',
+                                async: true,
+                                success: function (bingoResponseData) {
+                                    bingoResponseData.clicks.forEach(function (entry) {
+                                        if (entry.clicks >= 5) {
+                                            buzzwordConfirmed[entry.card] = true;
+                                        }
+                                    });
+                                },
+                                error: function (bingoResponseData, textStatus, errorThrown) {
+                                    alert("Ajax failed to fetch data")
+                                }
+                            });
+                        }
 
                         // -- AJAX POST REQUEST :: END -----------------------------------------------------------------
 
@@ -645,14 +645,14 @@ $(document).ready(function () {
 
                             // simulierter probabilistik erfolg -> ENTER DB ABFRAGE HERE!
                             /*
-                            if (timeoutExit >= 5) {
-                                buzzwordConfirmed[id_img] = true;
-                            }
-                            */
+                             if (timeoutExit >= 5) {
+                             buzzwordConfirmed[id_img] = true;
+                             }
+                             */
 
                             // -- AJAX GET REQUEST :: BEGIN --------------------------------------------------------
 
-                             $.ajax({
+                            $.ajax({
                                 type: 'GET',
                                 url: host + '/rest/clicks',
                                 crossDomain: false,
@@ -660,22 +660,22 @@ $(document).ready(function () {
                                 contentType: 'application/json; charset=utf-8',
                                 dataType: 'json',
                                 async: true,
-                                success: function(bingoResponseData){
-                                    bingoResponseData.clicks.forEach(function(entry) {
+                                success: function (bingoResponseData) {
+                                    bingoResponseData.clicks.forEach(function (entry) {
                                         if (entry.clicks >= 5) {
                                             buzzwordConfirmed[entry.card] = true;
                                         } else {
                                             //buzzwordConfirmed[entry.card] = true;
-					    console.log('entry.clicks ' + entry.clicks);
-					    console.log('entry.card ' + entry.card);
-					    console.log(bingoResponseData);
+                                            console.log('entry.clicks ' + entry.clicks);
+                                            console.log('entry.card ' + entry.card);
+                                            console.log(bingoResponseData);
                                         }
-                                        
+
                                     });
                                 }
-                            });			    
+                            });
 
-			    	
+
                             $.ajax({
                                 type: 'GET',
                                 url: host + '/rest/click',
@@ -684,20 +684,20 @@ $(document).ready(function () {
                                 contentType: 'application/json; charset=utf-8',
                                 dataType: 'json',
                                 async: true,
-                                success: function(bingoResponseData){
-                                    bingoResponseData.clicks.forEach(function(entry) {
+                                success: function (bingoResponseData) {
+                                    bingoResponseData.clicks.forEach(function (entry) {
                                         if (entry.clicks >= 5) {
                                             buzzwordConfirmed[entry.card] = true;
                                         } else {
                                             //buzzwordConfirmed[entry.card] = true;
-					    console.log('entry.clicks ' + entry.clicks);
-					    console.log('entry.card ' + entry.card);
-					    //console.log(bingoResponseData);
+                                            console.log('entry.clicks ' + entry.clicks);
+                                            console.log('entry.card ' + entry.card);
+                                            //console.log(bingoResponseData);
                                         }
-                                        
+
                                     });
                                 }
-                            });			    
+                            });
 
                             // -- AJAX POST REQUEST :: END ---------------------------------------------------------
 
@@ -727,11 +727,37 @@ $(document).ready(function () {
                                     timeoutExit = 1;
                                     clearTimeout(checkBuzzword);
                                     buzzwordBusy[id_img] = false;
+
+
+                                    $.ajax({
+                                        type: 'DELETE',
+                                        url: host + '/rest/click',
+                                        crossDomain: false,
+                                        cache: false,
+                                        contentType: 'application/json; charset=utf-8',
+                                        dataType: 'json',
+                                        async: true,
+                                        success: function (bingoResponseData) {
+                                            bingoResponseData.clicks.forEach(function (entry) {
+                                                if (entry.clicks >= 5) {
+                                                    buzzwordConfirmed[entry.card] = true;
+                                                } else {
+                                                    //buzzwordConfirmed[entry.card] = true;
+                                                    console.log('entry.clicks ' + entry.clicks);
+                                                    console.log('entry.card ' + entry.card);
+                                                    //console.log(bingoResponseData);
+                                                }
+
+                                            });
+                                        }
+                                    });
+
+
                                 }
                             }
                         }());
                     }
-		    
+
                 }
             }
         });
