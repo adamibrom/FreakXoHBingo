@@ -78,7 +78,7 @@ class RestClickController extends AbstractRestController
     /**
      * Methode zum Lösen des letzen Klicks für eine Karte.
      *
-     * @Route("/rest/click", name="bingo_rest_click_post", defaults={ "_format" = "json" })
+     * @Route("/rest/click", name="bingo_rest_click_delete", defaults={ "_format" = "json" })
      * @Method("DELETE")
      * @Rest\View()
      * @param Request $request
