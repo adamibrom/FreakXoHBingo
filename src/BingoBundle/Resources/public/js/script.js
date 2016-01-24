@@ -237,9 +237,10 @@ $(document).ready(function () {
         var $elem = $(htmlId);
         $elem.find('img').attr('src', config.srcImg + '/' + imgId + '.svg');
         $elem.attr('data-img-id', '0');
-        if (playMode) {
-            $elem.addClass("gelbe_zelle");
-        }
+        // Freifeld im Playmode immer gelb starten
+        // if (playMode) {
+           // $elem.addClass("gelbe_zelle");
+        // }
     }
 
     function bindEventHandler() {
