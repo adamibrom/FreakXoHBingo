@@ -125,7 +125,8 @@ To do, brennt
 
 Ideen mo
 1. Punkte auch für die schnell reaktion und beteiligung am Buzzword freischalten, also die ersten acht user die klicken bekommen 1 oder 2 punkte.
-2. code aufräumen, z.b. Html mehr aus javascript generieren.
+2. code aufräumen, z.b. Html mehr aus javascript generieren. CSS Twitter bootstrap um proprtional mit der Browesergröße zu skalieren.
+
 3. zurückrechenbarer Hash oder langen link der Karte zum teilen auf twitter und wieder darstellen der gehashten/gelinkten Karte.
 4. Highscore liste und ranking anderer spieler als overlay über die nicht gewählten buzzwords, mit schaltfeld oben neben den punkten.
 5. Chat funktion ebenfalls als schaltbares overlay

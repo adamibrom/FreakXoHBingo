@@ -756,6 +756,33 @@ $(document).ready(function () {
                                     timeoutExit = 1;
                                     clearTimeout(checkBuzzword);
                                     buzzwordBusy[id_img] = false;
+				    
+                                    // -- AJAX POST REQUEST :: BEGIN ---------------------------------------------------------------
+
+                                    // Buzzword id_img in DB schreiben
+                                    if (!buzzwordConfirmed[id_img]) {
+                                        $.ajax({
+                                            type: 'DELETE',
+                                            url: host + '/rest/click',
+                                            crossDomain: false,
+                                            data: JSON.stringify({card: id_img}),
+                                            contentType: 'application/json; charset=utf-8',
+                                            dataType: 'json',
+                                            async: true,
+                                            success: function (bingoResponseData) {
+                                                bingoResponseData.clicks.forEach(function (entry) {
+                                                    if (entry.clicks >= 5) {
+                                                        buzzwordConfirmed[entry.card] = true;
+                                                    }
+                                                });
+                                            },
+                                            error: function (bingoResponseData, textStatus, errorThrown) {
+                                                alert("Ajax failed to fetch data")
+                                            }
+                                        });
+                                    }
+
+                                    // -- AJAX POST REQUEST :: END -----------------------------------------------------------------				    
                                 }
                             }
                         }());
