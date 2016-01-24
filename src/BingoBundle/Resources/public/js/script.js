@@ -449,7 +449,7 @@ $(document).ready(function () {
                                 async: true,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
-                                        if (entry.clicks >= 5) {
+                                        if (entry.clicks >= 6) {
                                             buzzwordConfirmed[entry.card] = true;
                                         }
                                     });
@@ -492,7 +492,7 @@ $(document).ready(function () {
                                 async: true,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
-                                        if (entry.clicks >= 5) {
+                                        if (entry.clicks >= 6) {
                                             buzzwordConfirmed[entry.card] = true;
                                         } else {
                                             //buzzwordConfirmed[entry.card] = true;
@@ -515,7 +515,7 @@ $(document).ready(function () {
                                 async: true,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
-                                        if (entry.clicks >= 5) {
+                                        if (entry.clicks >= 6) {
                                             buzzwordConfirmed[entry.card] = true;
                                         }
                                     });
@@ -566,7 +566,7 @@ $(document).ready(function () {
                                             async: true,
                                             success: function (bingoResponseData) {
                                                 bingoResponseData.clicks.forEach(function (entry) {
-                                                    if (entry.clicks >= 5) {
+                                                    if (entry.clicks >= 6) {
                                                         buzzwordConfirmed[entry.card] = true;
                                                     }
                                                 });
@@ -648,7 +648,7 @@ $(document).ready(function () {
                                 async: true,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
-                                        if (entry.clicks >= 5) {
+                                        if (entry.clicks >= 6) {
                                             buzzwordConfirmed[entry.card] = true;
                                         }
                                     });
@@ -692,7 +692,7 @@ $(document).ready(function () {
                                 async: true,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
-                                        if (entry.clicks >= 5) {
+                                        if (entry.clicks >= 6) {
                                             buzzwordConfirmed[entry.card] = true;
                                         } else {
                                             //buzzwordConfirmed[entry.card] = true;
@@ -716,7 +716,7 @@ $(document).ready(function () {
                                 async: true,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
-                                        if (entry.clicks >= 5) {
+                                        if (entry.clicks >= 6) {
                                             buzzwordConfirmed[entry.card] = true;
                                         } else {
                                             //buzzwordConfirmed[entry.card] = true;
@@ -772,7 +772,7 @@ $(document).ready(function () {
                                             async: true,
                                             success: function (bingoResponseData) {
                                                 bingoResponseData.clicks.forEach(function (entry) {
-                                                    if (entry.clicks >= 5) {
+                                                    if (entry.clicks >= 6) {
                                                         buzzwordConfirmed[entry.card] = true;
                                                     }
                                                 });
