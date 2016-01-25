@@ -28,7 +28,7 @@ $(document).ready(function () {
     var timeoutArray = new Array(49);
     var buzzwordConfirmed = new Array(config.buzzwordCount);
     var buzzwordBusy = new Array(config.buzzwordCount);
-    var wonBingos = new Array(103);
+    var wonBingos = new Array(143);
     var userRejected = new Array(49);
     var totalScore = 0;
     var $bingoBody = $('#BingoBody');

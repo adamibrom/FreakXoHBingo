@@ -91,6 +91,7 @@
 	"89": "Der geneigte Hoerer",
 	"90": "Ein aktuelles oder altes ...gate",
 	"91": "pOrn oder popcorn",
-	"92": "Der Chaos Computer Club oder ccc wird erwähnt"
+	"92": "Der Chaos Computer Club oder ccc wird erwähnt",
+	"93": "Es geht um Audio produktion oder Musik machen"
       };
   
