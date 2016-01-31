@@ -36,10 +36,11 @@ app/console cache:warmup --env="$env" --no-debug
 
 if [ "$env" == "dev" ]
 then
-    app/console assets:install --env="$env" --symlink
+    app/console assets:install --env=dev --symlink
 else
-    app/console assets:install --env="$env"
+    app/console assets:install --env=prod
+    app/console assetic:dump --env=prod --no-debug
 fi
 
-find app/cache -type d -exec chmod -v 775 {} \;
-find app/logs -type f -exec chmod -v 664 {} \;
+#find app/cache -type d -exec chmod -v 775 {} \;
+#find app/logs -type f -exec chmod -v 664 {} \;
