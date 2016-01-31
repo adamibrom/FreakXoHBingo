@@ -12,8 +12,7 @@ use Symfony\Component\Debug\Debug;
 // Feel free to remove this, extend it, or make something more sophisticated.
 // This check prevents access to debug front controllers that are deployed by accident to production servers.
 // Feel free to remove this, extend it, or make something more sophisticated.
-/*
-if (
+/*if (
     isset($_SERVER['HTTP_CLIENT_IP'])
     ||
     isset($_SERVER['HTTP_X_FORWARDED_FOR'])
@@ -32,8 +31,7 @@ if (
 ) {
     header('HTTP/1.0 403 Forbidden');
     exit(sprintf('You are not allowed to access this file. Check <b>%s</b> for more information.', basename(__FILE__)));
-}
-*/
+}*/
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 Debug::enable();

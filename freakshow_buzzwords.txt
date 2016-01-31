@@ -42,7 +42,7 @@ Apple store
 denglisch >> doppel zum mergen mit ePirat
 blankes Metall
 What could possibly go wrong
-BER
+BERlin
 HALL, Echo
 metaebene
 Schnuppsi
@@ -74,19 +74,28 @@ opensource
 fefe
 wir prangern das an
 freebsd
-wir prangern das an
 "glasfaser", >> Mokkel im Chat
 kleinkuhkackerode >> Roddi in der Sendung
-Future
+Future "Ich will endlich Zukunft"
 fnord
+Mate
+Rauter
+Das skaliert
+Techniker ist informiert
+"kaputt / funktional kaputt" 
+el cheapo
+Raumfahrt
+raaaiiinnn zufällig
+der geneigte hörer
+...Gate
+popcorn
+ccc
+musizieren
         <<^tiles für beta2 bereits erstellt>>
 
-Das skaliert
-el cheepo
+
+
 "country oder western" und 
-"Ich will endlich Zukunft"
-"kaputt / funktional kaputt" 
-raaaiiinnn zufällig
 
 
 
@@ -108,10 +117,32 @@ soo in etwa
 Selbst schuld
 
 
+To do, brennt
 
-feature requests:
+1. Nach erfolglosem intervall die click und clicks wieder dekrementieren
+2. Click und clicks global zurücknehmen, also auch in userkarte wieder löschen
 
 
+Ideen mo
+1. Punkte auch für die schnell reaktion und beteiligung am Buzzword freischalten, also die ersten acht user die klicken bekommen 1 oder 2 punkte.
+2. code aufräumen, z.b. Html mehr aus javascript generieren. CSS Twitter bootstrap um proprtional mit der Browesergröße zu skalieren.
 
-Nächster Commit:
-Freifeld immer ausgewählt
+3. zurückrechenbarer Hash oder langen link der Karte zum teilen auf twitter und wieder darstellen der gehashten/gelinkten Karte.
+4. Highscore liste und ranking anderer spieler als overlay über die nicht gewählten buzzwords, mit schaltfeld oben neben den punkten.
+5. Chat funktion ebenfalls als schaltbares overlay
+6. Arcade-Games zwischen den usern, z.b. pong per farbänderung auf der karte.
+7. Blinkenlights style intro und gewinnmeldung (Bingo schriftzug flascht bei bingo, karte macht laola bei freigeschaltetem buzzword)
+
+Drag und drop zum karte zusammenstellen, zumindest um die buzzwords zwischen links und rechts zu sortieren?
+Im mischmodus nicht nur zwischen rot/nichts toggeln, sondern rot/grün/nichts toggeln und bei grün schaltung das buzzword fest inkludieren
+
+Ideen Adam
+
+1. Da es eine Plattform sein könnte sollte man sich registrieren können. Am besten wäre es, wenn es auch mit Facebook, Google+, Twitter gehen würde (Da gibt es einige Möglichkeiten *LOL* https://github.com/hwi/HWIOAuthBundle).
+2. Jeder kann ein Spiel erstellen!
+3. Zum Spiel können wie z.B. bei Whatsapp Chatgruppen Personen eingeladen werden (Link oder E-Mail-Adresse? Keinen Plan im Augenblick).
+4. Die eingeladenen Personen können zu Admins des Spiels ernannt werden.
+5. Die View des Spiels sollte responsive sein (so etwas in der Richtung: http://ionicframework.com/docs/components/#grid).
+6. Es soll möglich sein in der Admin View des Spiels Karten, die gefallen sind, über einen einstellbaren Klick Counter oder von einem der Admins frei zu geben.
+7. Auswertungsseite wie oft eine Karte geklickt wurde.
+8. Als Ausbau, alle erzeugten Spiele mit den Spielkarten werden an den Server übertragen und der wertet die Klicks auf die Karten aus und meldet, sobald ein Spieler ein Bingo hat und wie viele Punkte er hat.

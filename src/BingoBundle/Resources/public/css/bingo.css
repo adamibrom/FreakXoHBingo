@@ -56,7 +56,6 @@ td{
     vertical-align: bottom;
     width:100px;
     height:100px;
-    transition: all 1.5s;
 }
 
 #fattext{
@@ -85,7 +84,6 @@ td{
     vertical-align: bottom;
     width:100px;
     height:100px;
-    transition: all 1.5s;
 }
 
 #logoverti td{
@@ -110,7 +108,6 @@ td{
     vertical-align: bottom;
     width:120px;
     height:120px;
-    transition: all 1.5s;
 }
 
 #logohori table{
@@ -157,7 +154,6 @@ li{
     vertical-align: bottom;
     width:100px;
     height:100px;
-    transition: all 1.5s;
 }
 
 #BingoBody td{
@@ -183,7 +179,6 @@ li{
     vertical-align: bottom;
     width:75px;
     height:75px;
-    transition: all 1.5s;
 }
 
 #scoreback{
@@ -278,7 +273,6 @@ li{
     position: absolute;
     height: 100px;
     width: 100px;
-    transition: all 0.2s;
     opacity: 0;
     background: url(/bundles/bingo/img/kreuz.svg);
     background-size: 100px 100px;
@@ -293,7 +287,6 @@ li{
     position: absolute;
     height: 75px;
     width: 75px;
-    transition: all 0.2s;
     opacity: 0;
     background: url(/bundles/bingo/img/kreuz.svg);
     background-size: 75px 75px;
@@ -307,7 +300,6 @@ li{
     position: absolute;
     height: 100px;
     width: 100px;
-    transition: all 0.2s;
     opacity: 0;
     background: url(/bundles/bingo/img/bulletholes.svg);
     background-size: 100px 100px;
@@ -322,7 +314,6 @@ li{
     position: absolute;
     height: 75px;
     width: 75px;
-    transition: all 0.1s;
     opacity: 0;
     background: url(/bundles/bingo/img/bulletholes.svg);
     background-size: 75px 75px;
@@ -333,7 +324,6 @@ li{
     position: absolute;
     height: 100px;
     width: 100px;
-    transition: background-color 0.01s;
     opacity: 0.95;
     background: url(/bundles/bingo/img/fragezeichen.svg);
     background-size: 100px 100px;
@@ -344,7 +334,6 @@ li{
     position: absolute;
     height: 75px;
     width: 75px;
-    transition: background-color 0.01s;
     opacity: 0.95;
     background: url(/bundles/bingo/img/fragezeichen.svg);
     background-size: 75px 75px;
@@ -359,7 +348,6 @@ li{
     background-color:#FFFFFF;
     border-radius: 2%;
     opacity: 0.96;
-/*    transition: opacity 0.3s; */
     font-family: Freakshow; font-size: 20pt;
     max-width:350px;
     min-width:0px;
@@ -379,7 +367,6 @@ li{
     border-radius: 2%;
     opacity: 0;
     background-color:#FFFFFF;
-/*    transition: opacity 0.2s; */
     font-family: Freakshow; font-size: 20pt;
     max-width:350px;
 }

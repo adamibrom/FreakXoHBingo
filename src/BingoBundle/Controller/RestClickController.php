@@ -3,6 +3,7 @@
 namespace BingoBundle\Controller;
 
 // these import the "@Route", "@Method", "@ParamConverter" and "@Template" annotations...
+use Propel\Runtime\ActiveQuery\Criteria;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -72,6 +73,39 @@ class RestClickController extends AbstractRestController
             'version' => Kernel::VERSION,
             'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
         );
+    }
+
+    /**
+     * Methode zum Lösen des letzen Klicks für eine Karte.
+     *
+     * @Route("/rest/click", name="bingo_rest_click_delete", defaults={ "_format" = "json" })
+     * @Method("DELETE")
+     * @Rest\View()
+     * @param Request $request
+     * @return array
+     */
+    public function deleteClickAction(Request $request)
+    {
+        if ($request->getMethod() == 'DELETE') {
+            $clickRequestData = array();
+
+            if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+                $clickRequestData = json_decode($request->getContent(), true);
+                //$request->replace(is_array($data) ? $data : array());
+            }
+
+            $click = ClickQuery::create()
+                ->orderByTimeCreate(Criteria::DESC)
+                ->findOneByCard($clickRequestData['card']);
+            $click->delete();
+        }
+
+        return array(
+            'name' => 'FreakXoHBingo',
+            'version' => Kernel::VERSION,
+            'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
+        );
+
     }
 
     // -- PROTECTED ----------------------------------------------------------------------------------------------------
