@@ -4,26 +4,18 @@ Das Frontend (die Spiele), der Adminbereich werden von Symfony erzeugt. Das Back
 
 ## Installation
 
+Eine genau [Installationsanleitung](INSTALL.md) ist unter [INSTALL.md](INSTALL.md) zu finden.
+
 Im ersten Schritt der Projekt klonen:
 
-    cd /var/www
     git clone git@github.com:bassix/FreakXoHBingo.git
     cd FreakXoHBingo
+    
+Composer Bundles installieren:
 
-Ist der Code von Github lokal verfügbar, das Installationsscript Ausführen um die Composer Pakete zu installieren:
+    php composer.phar install
 
-    ./composer.sh i
-
-Von Symfony wird ein Dialog gestartet in dem dann die bei der [Server Installation](SERVER.md) (Datenbank User und Password) eingegebene Daten eingetragen werden.
-
-_**Hinweis:** Ist bei der Konfiguration etwas schief gelaufen, dann kann die Installation auch manuel erstellt werden. Hier zu die ```app/config/parameters.yml.dist``` in  ```app/config/parameters.yml``` kopieren und bearbeiten._
-
-    cp app/config/parameters.yml.dist app/config/parameters.yml
-    nano app/config/parameters.yml
-
-### Grundstruktur
-
-Alle Routen werden über annotations (**```@Route```** und **```@Method```**) konfiguriert. Die Route ist somit im Doc-Block der Controller-Methode definiert.
+Von nun an kann die App ausgeführt werden.
 
 ### Externe Bundles
 
@@ -32,21 +24,20 @@ Die wichtisten Pakete in einer kurzen Übersicht:
 * **PHPUnit** in der 5er Version zum Ausführen von Tests.
 * **[Symfony 2.7](https://symfony.com/)** als Framework zum erzeugen von Seiten.
 * **[Propel 2](http://propelorm.org/)** als Datenbankabstraktionsschicht und für die Schema Versionierung.
-* **FOS Rest** ein Bundle, das eine Rest Full API erzeugt.
+* **[FOS Rest Bundle](http://symfony.com/doc/current/bundles/FOSRestBundle/index.html)** ein Bundle, das eine Rest Full API erzeugt.
+* **[FOS User Bundle](https://symfony.com/doc/master/bundles/FOSUserBundle/index.html)** ein Bundle, zum User und Authorisation Handling.
 
-*Unter **[Erstinstallation](#erstinstallation)** ist beschrieben wie das Projekt aufgesetzt wurde,
+_Unter **[Erstinstallation](erstinstallation)** ist beschrieben wie ein neues Projekt aufgesetzt wurde._
+
+### Grundstruktur
+
+Alle Routen werden über annotations (```@Route``` und ```@Method```) konfiguriert. Die Route ist somit im Doc-Block der Controller-Methode definiert.
 
 ## Arbeiten mit Symfony
 
-Die wichtigsten Kommandos für das Arbeiten mit Symfony:
+Die wichtigsten Kommandos für das Arbeiten mit Symfony und mit Assetic sind im ```./assets.sh``` Script zusammengefasst. Die im Folgenden beschriebenen Befehle werden dabei ausgeführt.
 
-Die Assets für die Live-Umgebung aufbauen:
-
-    app/console assetic:dump --env=prod
-
-Die Assets für die Entwicklungs-Umgebung aufbauen:
-
-    app/console assets:install --env=dev --symlink
+### Symfony Cache
 
 Den Produktions-Cache neu aufbauen:
 
@@ -55,6 +46,16 @@ Den Produktions-Cache neu aufbauen:
 Den Cache für die Entwicklungs-Umgebung aufbauen:
 
     app/console cache:clear --env=dev
+
+### Symfony Assetic
+
+Die Assets für die Live-Umgebung aufbauen:
+
+    app/console assetic:dump --env=prod
+
+Die Assets für die Entwicklungs-Umgebung aufbauen:
+
+    app/console assets:install --env=dev --symlink
 
 ## Propel
 
@@ -85,13 +86,9 @@ Anpassungen im Scheme und Migrationen:
 
 Wenn der Bug behoben ist, dann sollte ```app/console propel:build --overwrite``` klappen.
 
-___
-
-# Dokumentation
+## <a name="erstinstallation"></a>Erstinstallation
 
 Einige Befehle werden nur einmal beim ersten Aufsetzen eines Projekts ausgeführt. Hier also nur zu Dokummentationszwecken ;) 
-
-## <a name="erstinstallation"></a>Erstinstallation
 
 Open your command console and execute the following commands:
 

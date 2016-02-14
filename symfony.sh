@@ -13,5 +13,18 @@
 # Install or update composer
 ./composer.sh
 
-# Set or reset the generated data
-./symfony_generate.sh
+read -p "${orange}Clearing all caches (y/n)? ${reset}"
+if [ "$REPLY" == "y" ]
+then
+    rm -rf app/cache/**
+    #app/console cache:clear
+    #app/console cache:clear --env=test
+    echo "${underline}${green}All caches cleared!${reset}"
+fi
+echo "DONE${reset}"
+
+read -p "${orange}Generate Propel Base and Map Files (y/n)? ${reset}"
+./propel.sh
+
+read -p "${orange}Generate and install static files (y/n)? ${reset}"
+./assets.sh

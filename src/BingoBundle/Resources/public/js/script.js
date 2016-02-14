@@ -476,10 +476,10 @@ $(document).ready(function () {
 
                             // simulierter probabilistik erfolg -> ENTER DB ABFRAGE HERE!
                             /*
-                            if (timeoutExit >= 5) {
-                                buzzwordConfirmed[id_img] = true;
-                            }
-                            */
+                             if (timeoutExit >= 5) {
+                             buzzwordConfirmed[id_img] = true;
+                             }
+                             */
 
                             // -- AJAX GET REQUEST :: BEGIN --------------------------------------------------------
                             $.ajax({

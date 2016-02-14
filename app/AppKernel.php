@@ -24,7 +24,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             // Propel Bundle for Database ORM...
-            new Propel\PropelBundle\PropelBundle(),
+            new \Propel\Bundle\PropelBundle\PropelBundle(),
 
             // FOS Rest Bundle for Restfull API...
             new JMS\SerializerBundle\JMSSerializerBundle($this),
