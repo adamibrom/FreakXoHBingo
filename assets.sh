@@ -6,6 +6,7 @@
 # get the env
 env="$1"
 
+echo "${underline}${green}Delete ALL Assets${reset}"
 rm web/bundles/** -rf
 rm web/css/** -rf
 rm web/fonts/** -rf
@@ -30,17 +31,22 @@ else
     done
 fi
 
+echo "${underline}${green}Execute Cache Clear${reset}"
 app/console cache:clear --env="$env" --no-warmup
-app/console cache:warmup --env="$env" --no-debug
-#app/console assetic:dump --env="$env"
+echo "${underline}${green}Execute Cache Warmup${reset}"
+app/console cache:warmup --env="$env"
 
 if [ "$env" == "dev" ]
 then
+    echo "${underline}${green}Execute Assets Install${reset}"
     app/console assets:install --env=dev --symlink
 else
+    echo "${underline}${green}Execute Assets Install${reset}"
     app/console assets:install --env=prod
-    app/console assetic:dump --env=prod --no-debug
+    echo "${underline}${green}Execute Assets Dump${reset}"
+    app/console assetic:dump --env=prod
 fi
 
-#find app/cache -type d -exec chmod -v 775 {} \;
-#find app/logs -type f -exec chmod -v 664 {} \;
+echo "${underline}${green}Fix Cache Dir and File Mod${reset}"
+find app/cache -type d -exec chmod -v 775 {} \;
+find app/cache -type f -exec chmod -v 664 {} \;
