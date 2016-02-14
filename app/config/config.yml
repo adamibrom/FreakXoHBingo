@@ -110,3 +110,8 @@ fos_rest:
         view_response_listener: 'force'
         mime_types:
             json: [ 'application/json; charset=UTF-8', 'application/json' ]
+
+fos_user:
+    db_driver: propel # other valid values are 'orm', 'mongodb', 'couchdb' and 'propel'
+    firewall_name: secured
+    user_class: BingoBundle\Model\User

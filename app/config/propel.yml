@@ -10,3 +10,5 @@ propel:
         adapters:
             mysql:
                 tableType: InnoDB
+    #behaviors:
+    #    typehintable: vendor.willdurand.propel-typehintable-behavior.src.TypehintableBehavior

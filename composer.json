@@ -38,17 +38,21 @@
 
         "incenteev/composer-parameter-handler": "2.1.x-dev",
 
-        "propel/propel": "dev-master",
+        "propel/propel": "2.0.x-dev",
         "propel/propel-bundle": "2.0.x-dev",
 
-        "friendsofsymfony/rest-bundle": "dev-master",
-        "jms/serializer-bundle": "dev-master",
+        "friendsofsymfony/rest-bundle": "2.0.x-dev",
+        "friendsofsymfony/user-bundle": "2.0.x-dev",
+        "willdurand/propel-typehintable-behavior": "dev-master",
 
-        "friendsofsymfony/user-bundle": "dev-master"
+        "jms/serializer-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "3.0.x-dev",
         "symfony/phpunit-bridge": "3.1.x-dev"
+    },
+    "require-postponed": {
+        "willdurand/propel-typehintable-behavior": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

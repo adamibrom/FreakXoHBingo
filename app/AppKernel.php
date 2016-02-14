@@ -30,6 +30,9 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
 
+            // FOS User for security...
+            new FOS\UserBundle\FOSUserBundle(),
+
             // Bingo Application...
             new BaseBundle\BaseBundle(),
             new BingoBundle\BingoBundle()

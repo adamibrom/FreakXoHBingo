@@ -52,6 +52,25 @@ class PageController extends AbstractController
         );
     }
 
+    /**
+     * The Start Action.
+     *
+     * Erste Version einer Startseite für die Buingo Spiele!
+     *
+     * @Route("/start", name="bingo_start")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function startAction()
+    {
+        return $this->render(
+            'BingoBundle:Page:start.html.twig',
+            array(
+                'name' => 'FreakXoHBingo',
+                'version' => Kernel::VERSION
+            )
+        );
+    }
+
     // -- PROTECTED ----------------------------------------------------------------------------------------------------
 
     /**
