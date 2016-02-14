@@ -24,7 +24,8 @@ Die wichtisten Pakete in einer kurzen Übersicht:
 * **PHPUnit** in der 5er Version zum Ausführen von Tests.
 * **[Symfony 2.7](https://symfony.com/)** als Framework zum erzeugen von Seiten.
 * **[Propel 2](http://propelorm.org/)** als Datenbankabstraktionsschicht und für die Schema Versionierung.
-* **FOS Rest** ein Bundle, das eine Rest Full API erzeugt.
+* **[FOS Rest Bundle](http://symfony.com/doc/current/bundles/FOSRestBundle/index.html)** ein Bundle, das eine Rest Full API erzeugt.
+* **[FOS User Bundle](https://symfony.com/doc/master/bundles/FOSUserBundle/index.html)** ein Bundle, zum User und Authorisation Handling.
 
 _Unter **[Erstinstallation](erstinstallation)** ist beschrieben wie ein neues Projekt aufgesetzt wurde._
 
@@ -120,4 +121,3 @@ Es gibt mehrere Bundles, die bnötigt werden und die ersteinmal angelegt werden 
     app/console generate:bundle --namespace=BingoBundle
 
 Anschließend stehen die Bundles zur Verfügung.
-
