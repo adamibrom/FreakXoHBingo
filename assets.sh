@@ -31,20 +31,22 @@ else
     done
 fi
 
-echo "${underline}${green}Execute Cache Clear${reset}"
+echo "${underline}${green}Clearing the Cache...${reset}"
 app/console cache:clear --env="$env" --no-warmup
-echo "${underline}${green}Execute Cache Warmup${reset}"
+echo "${underline}${green}Warming up the Cache...${reset}"
 app/console cache:warmup --env="$env"
 
 if [ "$env" == "dev" ]
 then
-    echo "${underline}${green}Execute Assets Install${reset}"
-    app/console assets:install --env=dev --symlink
+    echo "${underline}${green}Dumping the Assets...${reset}"
+    app/console assetic:dump --env="$env"
+    echo "${underline}${green}Installing the Assets...${reset}"
+    app/console assets:install --env="$env" --symlink
 else
-    echo "${underline}${green}Execute Assets Install${reset}"
-    app/console assets:install --env=prod
-    echo "${underline}${green}Execute Assets Dump${reset}"
-    app/console assetic:dump --env=prod
+    echo "${underline}${green}Dumping the Assets...${reset}"
+    app/console assetic:dump --env="$env" --no-debug
+    echo "${underline}${green}Installing the Assets...${reset}"
+    app/console assets:install --env="$env"
 fi
 
 echo "${underline}${green}Fix Cache Dir and File Mod${reset}"
