@@ -86,7 +86,7 @@ $(document).ready(function () {
         bindEventHandler();
         initBingoCard();
         //toggleCaptionOnOff();
-	alert("Ajax failed to fetch data");
+	//alert("Ajax failed to fetch data");
     }
 
     function createBingoCard() {
