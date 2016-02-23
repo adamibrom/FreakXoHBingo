@@ -22,7 +22,7 @@ $(document).ready(function () {
         },
 
         // Anzahl der Buzzwords +1 wegen Freifeld
-        buzzwordCount: 94
+        buzzwordCount: 95
     };
 
     var timeoutArray = new Array(49);
