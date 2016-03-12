@@ -18,13 +18,19 @@ Solle bei der Installation ein Fehler auftreten, dann hilft meistens:
 
     chsh -s `which zsh` && /usr/bin/env zsh && . ~/.zshrc
 
-## PHP 7 installieren
+## PHP 7 Installation
 
 Zur Zeit (Stand 24.12.2015) ist PHP 7 noch zu neu und in den Distributionen nicht vorhanden. Hier also eine Anleitung wie man es installieren kann.
 
     sudo add-apt-repository ppa:ondrej/php-7.0
     sudo apt-get update
-    sudo apt-get install php7.0-fpm php7.0-mysql php7.0-curl php7.0-json
+    sudo apt-get install php7.0-fpm php7.0-mysql php7.0-curl php7.0-json php7.0-xml
+
+Nach der Installation die benötigten Mods aktivieren:
+
+    sudo phpenmod dom
+
+### PHP 7 Installation Vorbereitungen
 
 _**Note:** If your system's locale is set to anything other than UTF-8, adding the PPA may fail due to a bug handling characters in the author's name. As a workaround, you can install language-pack-en-base to make sure that locales are generated, and override system-wide locale settings while adding the PPA:_
 

@@ -22,7 +22,7 @@ $(document).ready(function () {
         },
 
         // Anzahl der Buzzwords +1 wegen Freifeld
-        buzzwordCount: 94
+        buzzwordCount: 97
     };
 
     var timeoutArray = new Array(49);
@@ -86,6 +86,7 @@ $(document).ready(function () {
         bindEventHandler();
         initBingoCard();
         //toggleCaptionOnOff();
+	//alert("Ajax failed to fetch data");
     }
 
     function createBingoCard() {

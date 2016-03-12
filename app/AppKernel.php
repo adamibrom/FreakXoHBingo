@@ -29,9 +29,11 @@ class AppKernel extends Kernel
             // FOS Rest Bundle for Restfull API...
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
+            //new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
             // FOS User for security...
             new FOS\UserBundle\FOSUserBundle(),
+            //new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
 
             // Bingo Application...
             new BaseBundle\BaseBundle(),
