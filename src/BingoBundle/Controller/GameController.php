@@ -14,8 +14,6 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 use BaseBundle\Controller\AbstractRestController;
 use BingoBundle\Propel\GameQuery;
-use Propel\Runtime\ActiveQuery\Criteria;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
@@ -40,7 +38,7 @@ class GameController extends AbstractRestController
 
         $gamesQuery = new GameQuery();
         $gamesQuery->joinWithI18n($locale);
-        $gamesQuery->orderById(Criteria::DESC);
+        $gamesQuery->orderById(\Criteria::DESC);
         $games = $gamesQuery->find();
 
         $gamesData = array();

@@ -120,11 +120,11 @@ fos_user:
     user_class: BingoBundle\Model\User
 
 # FOS oAuth Configuration
-#fos_oauth_server:
-#    db_driver: orm
-#    client_class: BingoBundle\Entity\Client
-#    access_token_class:  BingoBundle\Entity\AccessToken
-#    refresh_token_class: BingoBundle\Entity\RefreshToken
-#    auth_code_class:     BingoBundle\Entity\AuthCode
-#    service:
-#        user_provider: fos_user.user_manager
+fos_oauth_server:
+    db_driver: orm
+    client_class: BingoBundle\Entity\Client
+    access_token_class:  BingoBundle\Entity\AccessToken
+    refresh_token_class: BingoBundle\Entity\RefreshToken
+    auth_code_class:     BingoBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager
