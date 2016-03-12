@@ -25,6 +25,8 @@
 /app/propel/fixtures
 /src/*/Propel/Base
 /src/*/Propel/Map
+/src/*/Propel/om
+/src/*/Propel/map
 
 # Managed by Composer
 /app/bootstrap.php.cache
