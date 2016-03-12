@@ -57,11 +57,11 @@
 
         "willdurand/propel-typehintable-behavior": "dev-master",
 
-        "friendsofsymfony/rest-bundle": "2.0.x-dev",
-        "friendsofsymfony/user-bundle": "2.0.x-dev",
-        "friendsofsymfony/oauth-server-bundle": "1.5.x-dev",
-        "jms/serializer-bundle": "1.1.x-dev",
-        "nelmio/api-doc-bundle": "2.11.x-dev"
+        "friendsofsymfony/rest-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "dev-master",
+        "friendsofsymfony/oauth-server-bundle": "dev-master",
+        "jms/serializer-bundle": "dev-master",
+        "nelmio/api-doc-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "3.0.x-dev",
@@ -96,10 +96,17 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "rm app/propel/sql/sqldb.map",
-            "rm -rf src/*Bundle/Propel/Base/**",
-            "rm -rf src/*Bundle/Propel/Map/**",
+            "rm -rf src/*/Propel/map/**",
+            "rm -rf src/*/Propel/om/**",
             "app/console propel:model:build"
+        ]
+    },
+    "scripts-postponed": {
+        "post-update-cmd": [
+            "rm app/propel/sql/sqldb.map",
+            "rm -rf src/*/Propel/Base/**",
+            "rm -rf src/*/Propel/Map/**",
+            "--"
         ]
     },
     "config": {
