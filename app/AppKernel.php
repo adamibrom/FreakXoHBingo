@@ -26,14 +26,15 @@ class AppKernel extends Kernel
             // Propel Bundle for Database ORM...
             new \Propel\Bundle\PropelBundle\PropelBundle(),
 
+            // FOS User for security...
+            //new FOS\UserBundle\FOSUserBundle(),
+
+            //new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            //new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+
             // FOS Rest Bundle for Restfull API...
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-
-            // FOS User for security...
-            new FOS\UserBundle\FOSUserBundle(),
-            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
 
             // Bingo Application...
             new BaseBundle\BaseBundle(),

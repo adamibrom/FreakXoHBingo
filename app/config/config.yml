@@ -1,8 +1,8 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: propel.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: propel.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -34,7 +34,7 @@ framework:
         name: FreakXoHBingoId
         cookie_lifetime: ~
         cookie_path: /
-        cookie_domain: FreakXoHBingo.de
+        cookie_domain: freakxohbingo.de
         cookie_secure: ~
         cookie_httponly: ~
         gc_divisor: ~
@@ -100,31 +100,32 @@ swiftmailer:
 # FOS Rest Configuration
 fos_rest:
     param_fetcher_listener: true
-    body_listener: true
+    body_listener:
+        decoders:
+            json: fos_rest.decoder.json
     format_listener:
+        enabled: true
         rules:
             fallback_format: json
-            prefer_extension: false
-            priorities: [ json, html, '/' ]
+            prefer_extension: true
+            priorities: [ json, html ]
     view:
         view_response_listener: 'force'
         mime_types:
             json: [ 'application/json; charset=UTF-8', 'application/json' ]
 
 # FOS User Configuration
-fos_user:
-    db_driver: propel # other valid values are 'orm', 'mongodb', 'couchdb' and 'propel'
-    firewall_name: api # Seems to be used when registering user/reseting password,
-                       # but since there is no "login", as so it seems to be useless in
-                       # our particular context, but still required by "FOSUserBundle"
-    user_class: BingoBundle\Model\User
+#fos_user:
+#    db_driver: propel
+#    firewall_name: main
+#    user_class: BingoBundle\Model\User
 
 # FOS oAuth Configuration
-fos_oauth_server:
-    db_driver: orm
-    client_class: BingoBundle\Entity\Client
-    access_token_class:  BingoBundle\Entity\AccessToken
-    refresh_token_class: BingoBundle\Entity\RefreshToken
-    auth_code_class:     BingoBundle\Entity\AuthCode
-    service:
-        user_provider: fos_user.user_manager
+#fos_oauth_server:
+#    db_driver: orm
+#    client_class: BingoBundle\Entity\Client
+#    access_token_class: BingoBundle\Entity\AccessToken
+#    refresh_token_class: BingoBundle\Entity\RefreshToken
+#    auth_code_class: BingoBundle\Entity\AuthCode
+#    service:
+#        user_provider: fos_user.user_manager

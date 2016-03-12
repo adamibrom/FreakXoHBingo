@@ -34,6 +34,7 @@
             "url": "git@github.com:oujesky/TypehintableBehavior.git"
         }
     ],
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.6.0",
         "phpunit/phpunit": "5.4.x-dev",
@@ -59,9 +60,7 @@
 
         "friendsofsymfony/rest-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "dev-master",
-        "friendsofsymfony/oauth-server-bundle": "dev-master",
-        "jms/serializer-bundle": "dev-master",
-        "nelmio/api-doc-bundle": "dev-master"
+        "jms/serializer-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "3.0.x-dev",
@@ -70,6 +69,9 @@
     "require-postponed": {
         "propel/propel": "2.0.x-dev",
         "propel/propel-bundle": "2.0.x-dev",
+
+        "friendsofsymfony/oauth-server-bundle": "dev-master",
+        "nelmio/api-doc-bundle": "dev-master",
 
         "friendsofsymfony/user-bundle": "2.0.x-dev",
         "bassix/FOSUserBundle": "dev-feature/Propel2",
