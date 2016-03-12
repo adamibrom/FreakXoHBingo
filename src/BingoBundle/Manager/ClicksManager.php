@@ -4,9 +4,9 @@ namespace BingoBundle\Manager;
 
 use BingoBundle\Propel\Click;
 use BingoBundle\Propel\ClickQuery;
-use BingoBundle\Propel\Map\ClickTableMap;
-use Propel\Runtime\ActiveQuery\Criteria;
-use Propel\Runtime\Propel;
+//use Propel\Runtime\ActiveQuery\Criteria;
+//use Propel\Runtime\Propel;
+use BingoBundle\Propel\om\BaseClickPeer;
 
 /**
  * Class ClicksManager
@@ -21,8 +21,9 @@ class ClicksManager
     public function getCardClicksData()
     {
         $clicksQuery = new ClickQuery();
-        $clicksQuery->groupBy(ClickTableMap::COL_CARD);
-        $clicksQuery->orderByTimeCreate(Criteria::DESC);
+        $clicksQuery->groupBy(BaseClickPeer::CARD);
+        //$clicksQuery->groupBy(ClickTableMap::COL_CARD);
+        $clicksQuery->orderByTimeCreate(\Criteria::DESC);
         $clicks = $clicksQuery->find();
 
         // -- Copy Object to Array
@@ -66,7 +67,7 @@ class ClicksManager
             ORDER BY time_create_max DESC
         ";
 
-        $con = Propel::getConnection();
+        $con = \Propel::getConnection();
         $stmt = $con->prepare($query);
         $stmt->execute();
         $clickResult = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -90,7 +91,7 @@ class ClicksManager
             ORDER BY clicks DESC
         ";
 
-        $con = Propel::getConnection();
+        $con = \Propel::getConnection();
         $stmt = $con->prepare($query);
         $stmt->execute();
         $clickResult = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -100,25 +101,23 @@ class ClicksManager
 
     /**
      * @param Click $card
+     * @return bool
      */
-    public function deleteCard($card){
-
-
+    public function deleteCard($card)
+    {
         $delete = "
-        DELETE FROM logintime t1
-   JOIN
-    (
-     SELECT MAX(datetime)
-      AS max_dt
-      FROM logintime
-      WHERE user_id = 1
-    ) t2
-WHERE t1.datetime  = t2.max_dt
-   AND card = {$card->get}
-   ";
-        $con = Propel::getConnection();
+            DELETE FROM logintime t1
+            JOIN (
+                SELECT MAX(datetime) AS max_dt
+                FROM logintime
+                WHERE user_id = 1
+            ) t2
+            WHERE t1.datetime  = t2.max_dt
+            AND card = {$card->get}
+        ";
+        $con = \Propel::getConnection();
         $stmt = $con->prepare($delete);
-        return $stmt->execute();
 
+        return $stmt->execute();
     }
 }

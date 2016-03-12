@@ -2,19 +2,8 @@
 
 namespace BingoBundle\Propel;
 
-use BingoBundle\Propel\Base\Player as BasePlayer;
+use BingoBundle\Propel\om\BasePlayer;
 
-/**
- * Skeleton subclass for representing a row from the 'bingo_player' table.
- *
- *
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- */
 class Player extends BasePlayer
 {
-
 }

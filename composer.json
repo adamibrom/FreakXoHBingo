@@ -1,6 +1,9 @@
 {
     "name": "FreakXoHBingo",
-    "keywords": ["bingo", "freakshow"],
+    "keywords": [
+        "bingo",
+        "freakshow"
+    ],
     "homepage": "http://freakxohbingo.de/",
     "license": "MIT",
     "authors": [
@@ -21,6 +24,16 @@
             "": "src/"
         }
     },
+    "repositories-postponed": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:bassix/FOSUserBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:oujesky/TypehintableBehavior.git"
+        }
+    ],
     "require": {
         "php": ">=5.6.0",
         "phpunit/phpunit": "5.4.x-dev",
@@ -39,8 +52,10 @@
 
         "incenteev/composer-parameter-handler": "2.1.x-dev",
 
-        "propel/propel": "2.0.x-dev",
-        "propel/propel-bundle": "2.0.x-dev",
+        "propel/propel1": "1.6.x-dev",
+        "propel/propel-bundle": "1.5.x-dev",
+
+        "willdurand/propel-typehintable-behavior": "dev-master",
 
         "friendsofsymfony/rest-bundle": "2.0.x-dev",
         "friendsofsymfony/user-bundle": "2.0.x-dev",
@@ -53,7 +68,16 @@
         "symfony/phpunit-bridge": "3.1.x-dev"
     },
     "require-postponed": {
-        "willdurand/propel-typehintable-behavior": "dev-master"
+        "propel/propel": "2.0.x-dev",
+        "propel/propel-bundle": "2.0.x-dev",
+
+        "friendsofsymfony/user-bundle": "2.0.x-dev",
+        "bassix/FOSUserBundle": "dev-feature/Propel2",
+
+        "willdurand/propel-typehintable-behavior": "dev-master",
+        "oujesky/TypehintableBehavior": "dev-propel2",
+
+        "--": "--"
     },
     "scripts": {
         "post-install-cmd": [

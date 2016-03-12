@@ -3,7 +3,7 @@
 namespace BingoBundle\Controller;
 
 // these import the "@Route", "@Method", "@ParamConverter" and "@Template" annotations...
-use Propel\Runtime\ActiveQuery\Criteria;
+//use Propel\Runtime\ActiveQuery\Criteria;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -16,7 +16,6 @@ use BaseBundle\Controller\AbstractRestController;
 use BingoBundle\Manager\ClicksManager;
 use BingoBundle\Propel\Click;
 use BingoBundle\Propel\ClickQuery;
-use Propel\Runtime\Propel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -95,7 +94,7 @@ class RestClickController extends AbstractRestController
             }
 
             $click = ClickQuery::create()
-                ->orderByTimeCreate(Criteria::DESC)
+                ->orderByTimeCreate(\Criteria::DESC)
                 ->findOneByCard($clickRequestData['card']);
             $click->delete();
         }

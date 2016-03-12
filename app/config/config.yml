@@ -111,7 +111,20 @@ fos_rest:
         mime_types:
             json: [ 'application/json; charset=UTF-8', 'application/json' ]
 
+# FOS User Configuration
 fos_user:
     db_driver: propel # other valid values are 'orm', 'mongodb', 'couchdb' and 'propel'
-    firewall_name: secured
+    firewall_name: api # Seems to be used when registering user/reseting password,
+                       # but since there is no "login", as so it seems to be useless in
+                       # our particular context, but still required by "FOSUserBundle"
     user_class: BingoBundle\Model\User
+
+# FOS oAuth Configuration
+#fos_oauth_server:
+#    db_driver: orm
+#    client_class: BingoBundle\Entity\Client
+#    access_token_class:  BingoBundle\Entity\AccessToken
+#    refresh_token_class: BingoBundle\Entity\RefreshToken
+#    auth_code_class:     BingoBundle\Entity\AuthCode
+#    service:
+#        user_provider: fos_user.user_manager
