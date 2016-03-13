@@ -96,7 +96,7 @@ BingoApp.controller('BingoGamesController', function ($scope, $locale, $window, 
     });
 
     /*
-    var myModal = $modal.open({
+    var myModal = $uibModal.open({
         animation: true,
         templateUrl: 'editForm.html',
         backdrop: 'static',

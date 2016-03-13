@@ -11,8 +11,8 @@
  * btn_0_label: Beschriftung für den ersten Button von links
  * btn_1_label: Beschriftung für den zweiten Button von links (nur bei confirm)
  */
-BingoApp.factory('MessageBoxService', ['$timeout', '$sce', '$log', '$modal',
-    function ($timeout, $sce, $log, $modal) {
+BingoApp.factory('MessageBoxService', ['$timeout', '$sce', '$log', '$uibModal',
+    function ($timeout, $sce, $log, $uibModal) {
         return {
             /**
              * Zeigt eine einfache Messagebox mit einem Button
@@ -23,7 +23,7 @@ BingoApp.factory('MessageBoxService', ['$timeout', '$sce', '$log', '$modal',
             'alert': function (config, closed) {
                 var that = this;
 
-                var modalInstance = $modal.open({
+                var modalInstance = $uibModal.open({
                         templateUrl: 'UIBaseMessageboxAlert.html',
                         keyboard: true,
                         size: 'sm',
@@ -58,7 +58,7 @@ BingoApp.factory('MessageBoxService', ['$timeout', '$sce', '$log', '$modal',
             'confirm': function (config, closed) {
                 var that = this;
 
-                var modalInstance = $modal.open({
+                var modalInstance = $uibModal.open({
                         templateUrl: 'UIBaseMessageboxAlert.html',
                         keyboard: true,
                         size: 'sm',
