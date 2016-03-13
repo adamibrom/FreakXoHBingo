@@ -21,8 +21,8 @@
 
         <ol>
             <li>Einem <strong>Bingo</strong> beitreten</li>
-            <li>Registrieren oder Einloggen</li>
-            <li>Ein <strong>Bingo</strong> Spiel erstellen</li>
+            <li><a href="{{ path('fos_user_registration_register') }}">Registrieren</a> und / oder <a href="{{ path('fos_user_security_login') }}">Einloggen</a></li>
+            <li>Ein <strong>Bingo</strong> Spiel erstellen (nur für registrierte User)</li>
         </ol>
 
         <div ng-hide="games.length > 0">
@@ -67,7 +67,7 @@
             </p>
         {% else %}
             <p class="text-right">
-                Um ein neues Spiel zu erstellen bitte registrieren und / oder einloggen :)
+                Um ein neues Spiel zu erstellen bitte vorher <a href="{{ path('fos_user_registration_register') }}">registrieren</a> und / oder <a href="{{ path('fos_user_security_login') }}">einloggen</a> :)
             </p>
         {% endif %}
     </div>

@@ -47,6 +47,11 @@ abstract class AbstractRestController extends FOSRestController
     public function getUserData()
     {
         $user = $this->getUser();
+
+        if (is_null($user)) {
+            return [];
+        }
+
         $userData = [
             'id' => $user->getId(),
             'username' => $user->getUsername(),
