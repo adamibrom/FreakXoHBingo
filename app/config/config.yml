@@ -21,7 +21,7 @@ framework:
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
     templating:
-        engines: ['twig']
+        engines: [ 'twig' ]
         #assets_version: SomeVersionScheme
     default_locale: "%locale%"
     trusted_hosts: ~
@@ -45,10 +45,10 @@ framework:
     http_method_override: true
 
 sensio_framework_extra:
+    view: { annotations: false }
     router: { annotations: true }
     request: { converters: true }
-    view: { annotations: false }
-    cache: { annotations: true }
+    #cache: { annotations: true }
 
 # Twig Configuration
 twig:
@@ -101,12 +101,32 @@ swiftmailer:
 fos_rest:
     param_fetcher_listener: true
     body_listener: true
+    param_fetcher_listener: force
+    allowed_methods_listener: true
+    access_denied_listener:
+        json: true
     format_listener:
         rules:
-            fallback_format: json
-            prefer_extension: false
-            priorities: [ json, html, '/' ]
+            #fallback_format: json
+            #prefer_extension: false
+            #priorities: [ json, html ]
+            - { path: ^/rest, priorities: [ json, html ], fallback_format: json, prefer_extension: false }
+    routing_loader:
+        default_format: ~
     view:
-        view_response_listener: 'force'
+        view_response_listener: force
         mime_types:
             json: [ 'application/json; charset=UTF-8', 'application/json' ]
+
+#fos_rest:
+#    view:
+#        #default_engine: php
+#        view_response_listener: force
+#        force_redirects:
+#            html: true
+#            #xml: true
+#        formats:
+#            jsonp: true
+#            json: true
+#            xml: true
+#            rss: false

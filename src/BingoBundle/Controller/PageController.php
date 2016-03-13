@@ -52,6 +52,23 @@ class PageController extends AbstractController
         );
     }
 
+    /**
+     * The Showview Action.
+     *
+     * @Route("/showview", name="bingo_showview")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showviewAction()
+    {
+        return $this->render(
+            'BingoBundle:Page:showview.html.twig',
+            array(
+                'name' => 'FreakXoHBingo Showview Monitor',
+                'version' => Kernel::VERSION
+            )
+        );
+    }
+
     // -- PROTECTED ----------------------------------------------------------------------------------------------------
 
     /**

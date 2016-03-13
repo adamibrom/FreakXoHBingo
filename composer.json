@@ -23,7 +23,8 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "phpunit/phpunit": "5.*",
+        "phpunit/phpunit": "5.4.x-dev",
+        "phpunit/phpunit-mock-objects": "3.1.x-dev",
 
         "doctrine/orm": "2.6.x-dev",
         "doctrine/doctrine-bundle": "1.6.x-dev",
@@ -38,13 +39,13 @@
 
         "incenteev/composer-parameter-handler": "2.1.x-dev",
 
-        "propel/propel": "dev-master",
-        "propel/propel-bundle": "2.0.x-dev",
+        "propel/propel1": "1.6.x-dev",
+        "propel/propel-bundle": "1.5.x-dev",
+
+        "willdurand/propel-typehintable-behavior": "dev-master",
 
         "friendsofsymfony/rest-bundle": "dev-master",
-        "jms/serializer-bundle": "dev-master",
-
-        "friendsofsymfony/user-bundle": "dev-master"
+        "jms/serializer-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "3.0.x-dev",
@@ -67,9 +68,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "rm app/propel/sql/sqldb.map",
-            "rm -rf src/*Bundle/Propel/Base/**",
-            "rm -rf src/*Bundle/Propel/Map/**",
+            "rm -rf src/*/Propel/map/**",
+            "rm -rf src/*/Propel/om/**",
             "app/console propel:model:build"
         ]
     },

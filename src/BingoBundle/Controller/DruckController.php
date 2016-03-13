@@ -12,9 +12,9 @@ use BaseBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * Class IndexController
+ * Class DruckController
  *
- * @package BingoRestBundle\Controller
+ * @package BingoBundle\Controller
  */
 class DruckController extends AbstractController
 {
