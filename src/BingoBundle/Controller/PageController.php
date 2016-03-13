@@ -34,6 +34,22 @@ class PageController extends AbstractController
     }
 
     /**
+     * The Start Action, the new "index" Page ;)
+     *
+     * @Route("/start", name="bingo_start")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function startAction()
+    {
+        return $this->render(
+            'BingoBundle:Page:start.html.twig',
+            array(
+                'name' => 'FreakXoHBingo'
+            )
+        );
+    }
+
+    /**
      * The Click Stats Action.
      *
      * @Route("/clicks", name="bingo_clicks")
