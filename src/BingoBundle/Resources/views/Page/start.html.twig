@@ -14,7 +14,26 @@
         <pre>games: {[ games|json ]}</pre>
         <div class="clearfix"></div>
         -->
-        <p class="bg-info" ng-hide="games.length > 0">No <strong>Games</strong> found!</p>
+
+        <h2>Was willst du machen?</h2>
+
+        <p>Folgende Aktionen stehen zur Zeit zur Verfügung:</p>
+
+        <ol>
+            <li>Einem Spiel beitreten.</li>
+            <li>Registrieren oder Einloggen.</li>
+            <li>Ein <strong>Bingo</strong> Spiel erstellen.</li>
+        </ol>
+
+        <div ng-hide="games.length > 0">
+            <div class="alert alert-info" role="alert">
+                Zur Zeit gibt es kein <strong>Bingo</strong>, dem du beitreten kannst :(
+            </div>
+            <p class="text-right">
+                <button class="btn" ng-click="openGameModal()">Jetzt ein neues <strong>Bingo</strong> erstellen!</button>
+            </p>
+        </div>
+
         <table class="table table-bordered table-striped table-hover table-condensed table-curved" ng-show="games.length > 0">
             <thead>
             <tr>
@@ -42,13 +61,14 @@
             </tbody>
         </table>
     </div>
+    {% include 'BingoBundle:templates:GameModalContent.html.twig' %}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <!--<script src="/bundles/bingo/app/controller/games.js"></script>-->
     {% javascripts
-        '@BingoBundle/Resources/public/app/controller/games.js' %}
+        '@BingoBundle/Resources/public/app/controller/games.js'
+        '@BingoBundle/Resources/public/app/controller/game-modal.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
