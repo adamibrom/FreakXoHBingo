@@ -28,7 +28,7 @@
 
         <!-- OWNER :: BEGIN -->
         <!--<column name="owner_id" phpName="ownerId" type="BIGINT" size="20" sqlType="BIGINT(20) UNSIGNED"/>-->
-        <column name="owner_id" phpName="ownerId" type="INT" size="11"/>
+        <column name="owner_id" phpName="ownerId" type="INTEGER" size="11"/>
 
         <index name="I_Bingo_Game_OwnerId">
             <index-column name="owner_id" />

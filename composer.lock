@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "339e834771c33dbaa7f09c4dfa9b72ae",
-    "content-hash": "1cdf0a8cf9b843c2a37ca2fa6fe9686e",
+    "hash": "ae51861e74cec12dff74ebd796985fb0",
+    "content-hash": "8632ee49823850a16f2d2b0d54790af9",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1562,16 +1562,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.18.0",
+            "version": "1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
+                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
-                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
+                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
                 "shasum": ""
             },
             "require": {
@@ -1636,7 +1636,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-03-01 18:00:40"
+            "time": "2016-03-13 16:08:35"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4361,6 +4361,58 @@
             "time": "2015-11-21 14:23:02"
         },
         {
+            "name": "willdurand/propel-statemachine-behavior",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/StateMachineBehavior.git",
+                "reference": "cdf3906471d5564cae68904e6f9115d2ae65c05d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/StateMachineBehavior/zipball/cdf3906471d5564cae68904e6f9115d2ae65c05d",
+                "reference": "cdf3906471d5564cae68904e6f9115d2ae65c05d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4",
+                "propel/propel1": "~1.6"
+            },
+            "require-dev": {
+                "behat/behat": "~2.2",
+                "phpunit/phpunit": "~3.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com",
+                    "homepage": "http://www.willdurand.fr"
+                }
+            ],
+            "description": "Adds a finite state machine to your model.",
+            "keywords": [
+                "Behavior",
+                "propel",
+                "state machine"
+            ],
+            "time": "2014-01-30 08:42:08"
+        },
+        {
             "name": "willdurand/propel-typehintable-behavior",
             "version": "dev-master",
             "source": {
@@ -4528,6 +4580,7 @@
         "propel/propel1": 20,
         "propel/propel-bundle": 20,
         "willdurand/propel-typehintable-behavior": 20,
+        "willdurand/propel-statemachine-behavior": 20,
         "friendsofsymfony/rest-bundle": 20,
         "jms/serializer-bundle": 20,
         "friendsofsymfony/user-bundle": 20,

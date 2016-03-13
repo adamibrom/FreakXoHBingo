@@ -47,6 +47,7 @@
         "propel/propel-bundle": "1.5.x-dev",
 
         "willdurand/propel-typehintable-behavior": "dev-master",
+        "willdurand/propel-statemachine-behavior": "dev-master",
 
         "friendsofsymfony/rest-bundle": "dev-master",
         "jms/serializer-bundle": "dev-master",
