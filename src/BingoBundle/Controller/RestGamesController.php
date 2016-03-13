@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 // these import the "@View" annotations for FOS Rest Bundle...
 //use FOS\RestBundle\Controller\Annotations as Rest;
 
+use BingoBundle\Propel\Game;
 use BingoBundle\Propel\GameQuery;
 //use Propel\Runtime\ActiveQuery\Criteria;
 use Criteria;
@@ -36,6 +37,7 @@ class RestGamesController extends AbstractRestBaseController
         $gamesQuery = new GameQuery();
         $gamesQuery->joinWithI18n($locale);
         $gamesQuery->orderById(\Criteria::DESC);
+        /** @var Game[] $games */
         $games = $gamesQuery->find();
 
         $gamesData = array();
@@ -46,7 +48,16 @@ class RestGamesController extends AbstractRestBaseController
                 'slug' => $game->getSlug(),
                 'name' => $game->getName(),
                 'slogan' => $game->getSlogan(),
-                'description' => $game->getDescription()
+                'description' => $game->getDescription(),
+                'user' => [
+                    'id' => $game->getUser()->getId(),
+                    'username' => $game->getUser()->getUsername(),
+                    'logged_in' => (
+                        null !== $this->getUser()
+                        &&
+                        $this->getUser()->getUsername() == $game->getUser()->getUsername()
+                    )
+                ]
             );
         }
 

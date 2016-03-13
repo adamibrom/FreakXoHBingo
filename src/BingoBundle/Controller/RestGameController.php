@@ -69,7 +69,7 @@ class RestGameController extends AbstractRestBaseController
             'name' => 'FreakXoHBingo',
             'user' => $this->getUserData(),
             'status' => true,
-            'game' => $game
+            'game' => $game->toArray()
         );
     }
 }
