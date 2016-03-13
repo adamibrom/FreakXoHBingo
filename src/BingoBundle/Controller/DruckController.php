@@ -12,9 +12,9 @@ use BaseBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * Class IndexController
+ * Class DruckController
  *
- * @package BingoRestBundle\Controller
+ * @package BingoBundle\Controller
  */
 class DruckController extends AbstractController
 {
@@ -29,8 +29,7 @@ class DruckController extends AbstractController
         return $this->render(
             'BingoBundle:Page:a4druck.html.twig',
             array(
-                'name' => 'FreakXoHBingo Druck',
-                'version' => Kernel::VERSION
+                'name' => 'FreakXoHBingo Druck'
             )
         );
     }

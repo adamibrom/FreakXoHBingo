@@ -21,7 +21,7 @@ framework:
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
     templating:
-        engines: ['twig']
+        engines: [ 'twig' ]
         #assets_version: SomeVersionScheme
     default_locale: "%locale%"
     trusted_hosts: ~
@@ -45,9 +45,9 @@ framework:
     http_method_override: true
 
 sensio_framework_extra:
+    view: { annotations: false }
     router: { annotations: true }
     request: { converters: true }
-    view: { annotations: false }
     cache: { annotations: true }
 
 # Twig Configuration
@@ -100,32 +100,37 @@ swiftmailer:
 # FOS Rest Configuration
 fos_rest:
     param_fetcher_listener: true
-    body_listener:
-        decoders:
-            json: fos_rest.decoder.json
+    body_listener: true
+    param_fetcher_listener: force
+    allowed_methods_listener: true
+    access_denied_listener:
+        json: true
     format_listener:
-        enabled: true
         rules:
-            fallback_format: json
-            prefer_extension: true
-            priorities: [ json, html ]
+            #fallback_format: json
+            #prefer_extension: false
+            #priorities: [ json, html ]
+            - { path: ^/rest, priorities: [ json, html ], fallback_format: json, prefer_extension: false }
+            - { path: ^/, priorities: [ html, json, xml ], fallback_format: ~, prefer_extension: true }
+    routing_loader:
+        default_format: ~
     view:
-        view_response_listener: 'force'
+        view_response_listener: force
         mime_types:
             json: [ 'application/json; charset=UTF-8', 'application/json' ]
 
 # FOS User Configuration
-#fos_user:
-#    db_driver: propel
-#    firewall_name: main
-#    user_class: BingoBundle\Model\User
+fos_user:
+    db_driver: propel
+    firewall_name: main
+    user_class: BingoBundle\Model\User
 
 # FOS oAuth Configuration
-#fos_oauth_server:
-#    db_driver: orm
-#    client_class: BingoBundle\Entity\Client
-#    access_token_class: BingoBundle\Entity\AccessToken
-#    refresh_token_class: BingoBundle\Entity\RefreshToken
-#    auth_code_class: BingoBundle\Entity\AuthCode
-#    service:
-#        user_provider: fos_user.user_manager
+fos_oauth_server:
+    db_driver: orm
+    client_class: BingoBundle\Entity\Client
+    access_token_class: BingoBundle\Entity\AccessToken
+    refresh_token_class: BingoBundle\Entity\RefreshToken
+    auth_code_class: BingoBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager

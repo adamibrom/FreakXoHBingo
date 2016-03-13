@@ -4,9 +4,12 @@ namespace BingoBundle\Manager;
 
 use BingoBundle\Propel\Click;
 use BingoBundle\Propel\ClickQuery;
+//use BingoBundle\Propel\Map\ClickTableMap;
 //use Propel\Runtime\ActiveQuery\Criteria;
 //use Propel\Runtime\Propel;
 use BingoBundle\Propel\om\BaseClickPeer;
+use Criteria;
+use Propel;
 
 /**
  * Class ClicksManager
@@ -23,7 +26,7 @@ class ClicksManager
         $clicksQuery = new ClickQuery();
         $clicksQuery->groupBy(BaseClickPeer::CARD);
         //$clicksQuery->groupBy(ClickTableMap::COL_CARD);
-        $clicksQuery->orderByTimeCreate(\Criteria::DESC);
+        $clicksQuery->orderByTimeCreate(Criteria::DESC);
         $clicks = $clicksQuery->find();
 
         // -- Copy Object to Array
@@ -115,7 +118,7 @@ class ClicksManager
             WHERE t1.datetime  = t2.max_dt
             AND card = {$card->get}
         ";
-        $con = \Propel::getConnection();
+        $con = Propel::getConnection();
         $stmt = $con->prepare($delete);
 
         return $stmt->execute();

@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use BaseBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Class IndexController
@@ -29,8 +28,7 @@ class PageController extends AbstractController
         return $this->render(
             'BingoBundle:Page:index.html.twig',
             array(
-                'name' => 'FreakXoHBingo',
-                'version' => Kernel::VERSION
+                'name' => 'FreakXoHBingo'
             )
         );
     }
@@ -46,27 +44,23 @@ class PageController extends AbstractController
         return $this->render(
             'BingoBundle:Page:clicks.html.twig',
             array(
-                'name' => 'FreakXoHBingo',
-                'version' => Kernel::VERSION,
+                'name' => 'FreakXoHBingo'
             )
         );
     }
 
     /**
-     * The Start Action.
+     * The Showview Action.
      *
-     * Erste Version einer Startseite für die Buingo Spiele!
-     *
-     * @Route("/start", name="bingo_start")
+     * @Route("/showview", name="bingo_showview")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function startAction()
+    public function showviewAction()
     {
         return $this->render(
-            'BingoBundle:Page:start.html.twig',
+            'BingoBundle:Page:showview.html.twig',
             array(
-                'name' => 'FreakXoHBingo',
-                'version' => Kernel::VERSION
+                'name' => 'FreakXoHBingo Showview Monitor'
             )
         );
     }

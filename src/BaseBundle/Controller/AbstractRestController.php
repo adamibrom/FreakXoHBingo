@@ -10,7 +10,7 @@ use FOS\RestBundle\View\View;
  *
  * @package BaseBundle\Controller
  */
-class AbstractRestController extends FOSRestController
+abstract class AbstractRestController extends FOSRestController
 {
     const HTTP_OK = 200;
     const HTTP_FOUND = 302;
