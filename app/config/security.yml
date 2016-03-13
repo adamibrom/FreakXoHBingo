@@ -23,8 +23,10 @@ security:
                 # if you are using Symfony < 2.8, use the following config instead:
                 #csrf_provider: form.csrf_provider
                 # @todo An dieser Stelle sollte dann auf die echte Startseite umgestellt werden!
-                default_target_path: /start
-            logout: true
+                default_target_path: bingo_start
+            #logout: true
+            logout:
+                target: bingo_start
             anonymous: true
 
     access_control:
