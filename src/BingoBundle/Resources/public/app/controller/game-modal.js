@@ -6,12 +6,14 @@
  * @param $uibModalInstance
  * @param $log
  * @param Restangular
+ * @param Slug
  * @param MessageService
  * @param game
+ * @param user
  * @param LoaderService
  * @constructor
  */
-var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $uibModalInstance, $log, Restangular, MessageService, game, LoaderService) {
+var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $uibModalInstance, $log, Restangular, Slug, MessageService, game, user, LoaderService) {
     /**
      * Get the global logger to the local scope.
      *
@@ -61,7 +63,7 @@ var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $uibMod
     /**
      * Request Address Data
      */
-    $scope.gameAjax = Restangular.all('/admin/rest/game');
+    $scope.gameAjax = Restangular.all('/rest/game');
 
     /**
      * The Game Object.
@@ -69,6 +71,13 @@ var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $uibMod
      * @type {{}}
      */
     $scope.game = game;
+
+    /**
+     * The Game Object.
+     *
+     * @type {{}}
+     */
+    $scope.user = user;
 
     /**
      * Submit the modal form.

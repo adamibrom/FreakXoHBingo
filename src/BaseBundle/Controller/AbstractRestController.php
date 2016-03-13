@@ -30,4 +30,28 @@ abstract class AbstractRestController extends FOSRestController
             ->setStatusCode(self::HTTP_OK)
             ->setData($data);
     }
+
+    /**
+     * Get a user from the Security Token Storage.
+     *
+     * @return \FOS\UserBundle\Propel\User
+     */
+    public function getUser()
+    {
+        return parent::getUser();
+    }
+
+    /**
+     * @return array
+     */
+    public function getUserData()
+    {
+        $user = $this->getUser();
+        $userData = [
+            'id' => $user->getId(),
+            'username' => $user->getUsername(),
+        ];
+
+        return $userData;
+    }
 }

@@ -11,7 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 // these import the "@View" annotations for FOS Rest Bundle...
 //use FOS\RestBundle\Controller\Annotations as Rest;
 
-use BaseBundle\Controller\AbstractRestController;
 use BingoBundle\Propel\GameQuery;
 //use Propel\Runtime\ActiveQuery\Criteria;
 use Criteria;
@@ -21,7 +20,7 @@ use Criteria;
  *
  * @package BingoBundle\Controller
  */
-class RestGamesController extends AbstractRestController
+class RestGamesController extends AbstractRestBaseController
 {
     /**
      * Methode zum Auslesen aller verfügbaren Bingo Spiele.
@@ -54,6 +53,7 @@ class RestGamesController extends AbstractRestController
         return $this->ok(
             array(
                 'name' => 'FreakXoHBingo',
+                'user' => $this->getUserData(),
                 'games' => $gamesData
             )
         );
@@ -78,6 +78,7 @@ class RestGamesController extends AbstractRestController
         return $this->ok(
             array(
                 'name' => 'FreakXoHBingo',
+                'user' => $this->getUserData(),
                 'game' => $game
             )
         );

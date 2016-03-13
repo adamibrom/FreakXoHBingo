@@ -48,6 +48,16 @@ BingoApp.controller('BingoGamesController', function ($scope, $locale, $window, 
     var gamesAjax = Restangular.all('/rest/games');
 
     /**
+     * Der zur Zeit eingeloggte User.
+     *
+     * @type {{}}
+     */
+    $scope.user = {
+        'id': 0,
+        'username': 'anonymous'
+    };
+
+    /**
      * List of Bingo Games Data.
      *
      * @type {Array}
@@ -62,6 +72,10 @@ BingoApp.controller('BingoGamesController', function ($scope, $locale, $window, 
 
         gamesAjax.get('').then(function (response) {
             $scope.setLoading(false);
+
+            if (typeof response.user != 'undefined') {
+                $scope.user = response.user;
+            }
 
             if (typeof response.games != 'undefined') {
                 $scope.games = response.games;
@@ -86,7 +100,8 @@ BingoApp.controller('BingoGamesController', function ($scope, $locale, $window, 
             resolve: {
                 game: function() {
                     return typeof game != 'undefined' ? game : {};
-                }
+                },
+                user: $scope.user
             }
         });
     };
