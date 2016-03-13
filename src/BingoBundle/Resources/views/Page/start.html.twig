@@ -29,15 +29,6 @@
             <div class="alert alert-info" role="alert">
                 Zur Zeit gibt es kein <strong>Bingo</strong>, dem du beitreten kannst :(
             </div>
-            {% if app.user %}
-                <p class="text-right">
-                    <button class="btn" ng-click="openGameModal()">Jetzt ein neues <strong>Bingo</strong> erstellen!</button>
-                </p>
-            {% else %}
-                <p class="text-right">
-                    Um ein neues Spiel zu erstellen bitte registrieren und / oder einloggen :)
-                </p>
-            {% endif %}
         </div>
 
         <table class="table table-bordered table-striped table-hover table-condensed table-curved" ng-show="games.length > 0">
@@ -66,6 +57,16 @@
             </tr>
             </tbody>
         </table>
+
+        {% if app.user %}
+            <p class="text-right">
+                <button class="btn" ng-click="openGameModal()">Jetzt ein neues <strong>Bingo</strong> erstellen!</button>
+            </p>
+        {% else %}
+            <p class="text-right">
+                Um ein neues Spiel zu erstellen bitte registrieren und / oder einloggen :)
+            </p>
+        {% endif %}
     </div>
     {% include 'BingoBundle:templates:GameModalContent.html.twig' %}
 {% endblock %}
