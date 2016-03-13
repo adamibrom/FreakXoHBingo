@@ -1,8 +1,9 @@
 /**
  * @param $scope
+ * @param $rootScope
  * @param $sce
  * @param $window
- * @param $modalInstance
+ * @param $uibModalInstance
  * @param $log
  * @param Restangular
  * @param MessageService
@@ -10,7 +11,7 @@
  * @param LoaderService
  * @constructor
  */
-var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $modalInstance, $log, Restangular, MessageService, game, LoaderService) {
+var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $uibModalInstance, $log, Restangular, MessageService, game, LoaderService) {
     /**
      * Get the global logger to the local scope.
      *
@@ -98,7 +99,7 @@ var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $modalI
     $scope.modalOk = function () {
         $scope.messageService.clearMessages();
         $scope.modalFormSubmit($scope.game);
-        $modalInstance.close($scope.game);
+        $uibModalInstance.close($scope.game);
     };
 
     /**
@@ -107,7 +108,7 @@ var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $modalI
     $scope.modalCancel = function () {
         $scope.messageService.clearMessages();
         //$scope.game = {};
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
     /**
@@ -117,6 +118,6 @@ var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $modalI
      */
     $scope.modalClose = function () {
         $scope.messageService.clearMessages();
-        //$modalInstance.close($scope.game);
+        //$uibModalInstance.close($scope.game);
     };
 };

@@ -9,24 +9,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 // these import the "@View" annotations for FOS Rest Bundle...
-use FOS\RestBundle\Controller\Annotations as Rest;
-
-use BaseBundle\Controller\AbstractRestController;
-use Symfony\Component\HttpKernel\Kernel;
+//use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * Class RestClicksController
  *
  * @package BingoBundle\Controller
  */
-class RestClicksController extends AbstractRestController
+class RestClicksController extends AbstractRestBaseController
 {
     /**
      * Methode zum Erhalten einer Liste der zuletzt getätigten Klicks innerhalb eines Spiels.
      *
      * @Route("/rest/clicks", name="bingo_rest_list_clicks", defaults={ "_format" = "json" })
      * @Method("GET")
-     * @Rest\View()
      * @return array
      */
     public function listAction()
@@ -34,20 +30,11 @@ class RestClicksController extends AbstractRestController
         $clicksManager = $this->getClicksManager();
         $clicksData = $clicksManager->getCardClicksDataWithinInterval();
 
-        return array(
-            'name' => 'FreakXoHBingo',
-            'version' => Kernel::VERSION,
-            'clicks' => $clicksData
+        return $this->ok(
+            array(
+                'name' => 'FreakXoHBingo',
+                'clicks' => $clicksData
+            )
         );
-    }
-
-    // -- PROTECTED ----------------------------------------------------------------------------------------------------
-
-    /**
-     * @return \BingoBundle\Manager\ClicksManager
-     */
-    protected function getClicksManager()
-    {
-        return $this->get('bingo.clicks.manager');
     }
 }

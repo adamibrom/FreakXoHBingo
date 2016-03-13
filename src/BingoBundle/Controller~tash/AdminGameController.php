@@ -42,6 +42,7 @@ class AdminGameController extends AbstractAdminController
             $locale = $request->request->get('locale');
         }
 
+        $game = null;
         $id = $request->request->get('id', null);
         $slug = $request->request->get('slug');
         $name = $request->request->get('name');

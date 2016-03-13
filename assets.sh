@@ -42,13 +42,15 @@ then
     app/console assetic:dump --env="$env"
     echo "${underline}${green}Installing the Assets...${reset}"
     app/console assets:install --env="$env" --symlink
+    echo "${underline}${green}Fix Cache Dir and File Mod${reset}"
+    find app/cache -type d -exec chmod -v 775 {} \;
+    find app/cache -type f -exec chmod -v 664 {} \;
 else
     echo "${underline}${green}Dumping the Assets...${reset}"
     app/console assetic:dump --env="$env" --no-debug
     echo "${underline}${green}Installing the Assets...${reset}"
     app/console assets:install --env="$env"
+    echo "${underline}${green}Fix Cache Dir and File Mod${reset}"
+    find app/cache -type d -exec chmod 775 {} \;
+    find app/cache -type f -exec chmod 664 {} \;
 fi
-
-echo "${underline}${green}Fix Cache Dir and File Mod${reset}"
-find app/cache -type d -exec chmod -v 775 {} \;
-find app/cache -type f -exec chmod -v 664 {} \;

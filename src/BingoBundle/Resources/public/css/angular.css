@@ -1,9 +1,5 @@
 /* AngularJS App Requirements */
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
-}
-
 #startup-loading .fa {
     font-size: 8em;
     margin-top: 26%;
