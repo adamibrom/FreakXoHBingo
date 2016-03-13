@@ -1,12 +1,14 @@
 propel:
-    database:
-        # All database sources
+    dbal:
+        default_connection: default
         connections:
             default:
-                adapter: mysql
-                dsn: mysql:host=%database_host%;dbname=%database_name%%database_charset%
+                driver: mysql
                 user: %database_user%
                 password: %database_password%
-        adapters:
-            mysql:
-                tableType: InnoDB
+                dsn: mysql:host=%database_host%;dbname=%database_name%%database_charset%
+    behaviors:
+        behavior_name: My\Bundle\Behavior\BehaviorClassName
+    build_properties:
+        # MySQL specific
+        propel.mysql.tableType: InnoDB

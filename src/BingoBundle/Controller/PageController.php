@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use BaseBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Class IndexController
@@ -29,8 +28,23 @@ class PageController extends AbstractController
         return $this->render(
             'BingoBundle:Page:index.html.twig',
             array(
-                'name' => 'FreakXoHBingo',
-                'version' => Kernel::VERSION
+                'name' => 'FreakXoHBingo'
+            )
+        );
+    }
+
+    /**
+     * The Start Action, the new "index" Page ;)
+     *
+     * @Route("/start", name="bingo_start")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function startAction()
+    {
+        return $this->render(
+            'BingoBundle:Page:start.html.twig',
+            array(
+                'name' => 'FreakXoHBingo'
             )
         );
     }
@@ -46,8 +60,23 @@ class PageController extends AbstractController
         return $this->render(
             'BingoBundle:Page:clicks.html.twig',
             array(
-                'name' => 'FreakXoHBingo',
-                'version' => Kernel::VERSION,
+                'name' => 'FreakXoHBingo'
+            )
+        );
+    }
+
+    /**
+     * The Showview Action.
+     *
+     * @Route("/showview", name="bingo_showview")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showviewAction()
+    {
+        return $this->render(
+            'BingoBundle:Page:showview.html.twig',
+            array(
+                'name' => 'FreakXoHBingo Showview Monitor'
             )
         );
     }

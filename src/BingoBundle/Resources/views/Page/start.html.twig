@@ -1,0 +1,74 @@
+{% extends 'BingoBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{ name }}!</h1>
+
+            <p>Willkommen beim <strong><a href="http://freakxohbingo.de/">FreakXoHBingo</a></strong>, dem Bingo zur <a href="http://freakshow.fm/" target="_blank">Freak Show</a> </p>
+        </div>
+    </div>
+    <div class="container" ng-init="getGames()" ng-controller="BingoGamesController" ng-cloak>
+        <!--
+        <div class="clearfix"></div>
+        <pre>games: {[ games|json ]}</pre>
+        <div class="clearfix"></div>
+        -->
+
+        <h2>Was willst du machen?</h2>
+
+        <p>Folgende Aktionen stehen zur Zeit zur Verfügung:</p>
+
+        <ol>
+            <li>Einem <strong>Bingo</strong> beitreten</li>
+            <li>Registrieren oder Einloggen</li>
+            <li>Ein <strong>Bingo</strong> Spiel erstellen</li>
+        </ol>
+
+        <div ng-hide="games.length > 0">
+            <div class="alert alert-info" role="alert">
+                Zur Zeit gibt es kein <strong>Bingo</strong>, dem du beitreten kannst :(
+            </div>
+            <p class="text-right">
+                <button class="btn" ng-click="openGameModal()">Jetzt ein neues <strong>Bingo</strong> erstellen!</button>
+            </p>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover table-condensed table-curved" ng-show="games.length > 0">
+            <thead>
+            <tr>
+                <td>#</td>
+                <td>Slug</td>
+                <td>Name</td>
+                <td>Action</td>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td>#</td>
+                <td>Slug</td>
+                <td>Name</td>
+                <td>Action</td>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr ng-repeat="(row, game) in games">
+                <td>{[ game.id ]}</td>
+                <td>{[ game.slug ]}</td>
+                <td>{[ game.name ]}</td>
+                <td><a href="{{ path(app.request.attributes.get('_route')) }}play/{[ game.slug ]}" class="btn btn-primary">play <i class="fa fa-play"></i></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    {% include 'BingoBundle:templates:GameModalContent.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@BingoBundle/Resources/public/app/controller/games.js'
+        '@BingoBundle/Resources/public/app/controller/game-modal.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -3,7 +3,7 @@
  *
  * Types: success info warning danger
  */
-BingoApp.factory('MessageService', ['$timeout', '$sce', '$log', '$modal',
+BingoApp.factory('MessageService', ['$timeout', '$sce', '$log', '$uibModal',
     function ($timeout, $sce, $log) {
         var messages = [];
 
