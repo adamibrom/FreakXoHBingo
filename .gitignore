@@ -19,7 +19,7 @@
 /app/config/parameters.yml
 /app/config/parameters.ini
 
-# Propel 2.0
+# Propel 1.6 & 2.0
 /app/propel/generated-schemas
 /app/propel/sql
 /app/propel/fixtures
