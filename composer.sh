@@ -29,17 +29,19 @@ then
     read -p "${orange}(i) Install or (u) update or (r) reinstall composer packages (i/u/r/n)? ${reset}"
 fi
 
+export SYMFONY_ENV=prod
+
 if [ "$REPLY" == "i" ] || [ "$action" == "i" ]
 then
-    php composer.phar install
+    php composer.phar install --optimize-autoloader
     echo "${underline}${green}Composer packages installed${reset}"
 elif [ "$REPLY" == "u" ] || [ "$action" == "u" ]
 then
-    php composer.phar update
+    php composer.phar update --optimize-autoloader
     echo "${underline}${green}Composer packages updated${reset}"
 elif [ "$REPLY" == "r" ] || [ "$action" == "r" ]
 then
     rm vendor/* -rf
-    php composer.phar install
+    php composer.phar install --optimize-autoloader
     echo "${underline}${green}Composer packages installed${reset}"
 fi
