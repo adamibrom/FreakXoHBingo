@@ -19,4 +19,12 @@ abstract class AbstractRestBaseController extends AbstractRestController
     {
         return $this->get('bingo.clicks.manager');
     }
+
+    /**
+     * @return \Lsw\MemcacheBundle\Cache\AntiDogPileMemcache
+     */
+    protected function getMemcache()
+    {
+        return $this->get('memcache.default');
+    }
 }
