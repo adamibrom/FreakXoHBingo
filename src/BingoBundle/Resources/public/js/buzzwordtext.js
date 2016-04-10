@@ -28,7 +28,7 @@
 	"26": "Schwelgen in historischen geschehnissen oder direkt ausgesprochen",
 	"27": "Kapitelmarke in jeglicher grammatikalischen form werden ausgesprochen",
 	"28": "Der Chat wird erwaehnt",
-	"29": "exakte erwähnung als ausspruch",
+	"29": "Slack als exakte Erwähnung oder Thema",
 	"30": "peak... in bezug auf den niedergang eins einst relevanten players",
 	"31": "Die Programmiersprache erlang wird erwähnt",
 	"32": "Der original Freakshow Trinkspiel spruch fällt. PROOOOOST!",
@@ -58,7 +58,7 @@
 	"56": "Das mobil OS Android wird explizit erwähnt",
 	"57": "otto normal facetuber wird erwähnt",
 	"58": "Die shownotes werden exakt erwähnt",
-	"59": "Haben wir noch Themen oder ähnlich z.B. so wenig Themen heute",
+	"59": "Haben wir noch Themen oder so wenig Themen heute oder ähnlich",
 	"60": "Schlumpfbeeren als sinnbild fuer unsinnige Punktesammelei und quantifizierung",
 	"61": "Linux oder GNU werden erwähnt",
 	"62": "Ein versuchter witz war flach wie eine flunder und verursacht kurz schweigen in der Runde",
@@ -92,6 +92,9 @@
 	"90": "Ein aktuelles oder altes ...gate",
 	"91": "pOrn oder popcorn",
 	"92": "Der Chaos Computer Club oder ccc wird erwähnt",
-	"93": "Es geht um Audio produktion oder Musik machen"
+	"93": "Es geht um Audio produktion oder Musik machen",
+	"94": "Plaste oder Plastikrouter",
+	"95": "Bingo im Bingo im Bingo ins schwarze Loch",
+	"96": "Es geht um Malware, Ransomware und artverwandten"
       };
   

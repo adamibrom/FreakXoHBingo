@@ -29,7 +29,7 @@ $(document).ready(function () {
     var buzzwordConfirmed = new Array(config.buzzwordCount);
     var buzzwordBusy = new Array(config.buzzwordCount);
     var wonBingos = new Array(143);
-    var userRejected = new Array(24,39,55,77,78,85,94,19,88,71,59,8,55,1,20,35,7,31,57,44,4,67,86,52,89);
+    var userRejected = new Array(49);
     var totalScore = 0;
     var $bingoBody = $('#BingoBody');
     var $BuzzwordsBody = $('#BuzzwordsBody');
@@ -394,7 +394,7 @@ $(document).ready(function () {
             model.bingoCard[24] = true;
         });
 
-        var userRejectedNum = 25; //vorrübergehender ausschluss der csch buzzwords
+        var userRejectedNum = 0;
 
         $("#BingoBody td").click(function () {
             if (userRejectedNum >= missingBingoCardsCount && !$(this).hasClass("rote_zelle")) {
