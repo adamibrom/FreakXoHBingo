@@ -17,6 +17,41 @@ Composer Bundles installieren:
 
 Von nun an kann die App ausgeführt werden.
 
+## <a name="erstinstallation"></a>Erstinstallation
+
+Einige Befehle werden nur einmal beim ersten Aufsetzen eines Projekts ausgeführt. Hier also nur zu Dokummentationszwecken ;) 
+
+Open your command console and execute the following commands:
+
+```
+sudo curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony
+sudo chmod a+x /usr/local/bin/symfony
+```
+
+Projekt mit Symfony erstellen:
+
+    symfony new reporting 2.8
+
+Unsere Variante, Projekt mit Composer erstellen:
+
+    ./composer.phar create-project symfony/framework-standard-edition reporting "2.8.*" 
+
+Nach dem das Projekt erstellt wurde kann es konfiguriert werden.
+
+## Neues Bundle erstellen
+
+Es gibt mehrere Bundles, die bnötigt werden und die ersteinmal angelegt werden müssen:
+
+**BaseBundle** 
+
+    app/console generate:bundle --namespace=BaseBundle
+
+**BingoBundle**
+
+    app/console generate:bundle --namespace=BingoBundle
+
+Anschließend stehen die Bundles zur Verfügung.
+
 ### Externe Bundles
 
 Die wichtisten Pakete in einer kurzen Übersicht:
@@ -86,38 +121,16 @@ Anpassungen im Scheme und Migrationen:
 
 Wenn der Bug behoben ist, dann sollte ```app/console propel:build --overwrite``` klappen.
 
-## <a name="erstinstallation"></a>Erstinstallation
+## FOS User Bundle
 
-Einige Befehle werden nur einmal beim ersten Aufsetzen eines Projekts ausgeführt. Hier also nur zu Dokummentationszwecken ;) 
+Neuen Benutzer erstellen:
 
-Open your command console and execute the following commands:
+    php bin/console fos:user:create testuser test@example.com p@ssword
 
-```
-sudo curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony
-sudo chmod a+x /usr/local/bin/symfony
-```
+Einen neuen Admin Benutzer erstellen:
 
-Projekt mit Symfony erstellen:
+    php bin/console fos:user:create adminuser test@example.com p@ssword --super-admin
 
-```
-symfony new reporting 2.7
-```
+Benutzer zu einem Admin machen:
 
-Unsere Variante, Projekt mit Composer erstellen:
-
-```
-./composer.phar create-project symfony/framework-standard-edition reporting "2.7.*" 
-```
-
-Nach dem das Projekt erstellt wurde kann es konfiguriert werden.
-
-## Neues Bundle erstellen
-
-Es gibt mehrere Bundles, die bnötigt werden und die ersteinmal angelegt werden müssen:
-
-* **BaseBundle** 
-    app/console generate:bundle --namespace=BaseBundle
-* **BingoBundle**
-    app/console generate:bundle --namespace=BingoBundle
-
-Anschließend stehen die Bundles zur Verfügung.
+    php bin/console fos:user:promote testuser ROLE_ADMIN
