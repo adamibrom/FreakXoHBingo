@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    /**
+     * @type {string}
+     */
     var host = location.protocol.concat('//').concat(window.location.hostname);
 
     if (window.location.href.indexOf('app_dev.php') > -1) {
@@ -86,7 +89,7 @@ $(document).ready(function () {
         bindEventHandler();
         initBingoCard();
         //toggleCaptionOnOff();
-	//alert("Ajax failed to fetch data");
+        //alert("Ajax failed to fetch data");
     }
 
     function createBingoCard() {
@@ -104,6 +107,7 @@ $(document).ready(function () {
             $cell.append($('<img>'));
             $cell.attr('class', 'cell');
             $row.append($cell);
+
             // Ueberpruefe ob Reihe voll
             if (i % config.bingoCard.width == config.bingoCard.width - 1) {
                 $bingoBody.append($row);
@@ -447,7 +451,7 @@ $(document).ready(function () {
                                 data: JSON.stringify({card: id_img}),
                                 contentType: 'application/json; charset=utf-8',
                                 dataType: 'json',
-                                async: true,
+                                async: false,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
                                         if (entry.clicks >= 6) {
@@ -477,12 +481,13 @@ $(document).ready(function () {
 
                             // simulierter probabilistik erfolg -> ENTER DB ABFRAGE HERE!
                             /*
-                             if (timeoutExit >= 5) {
-                             buzzwordConfirmed[id_img] = true;
-                             }
-                             */
+                            if (timeoutExit >= 5) {
+                                buzzwordConfirmed[id_img] = true;
+                            }
+                            */
 
-                            // -- AJAX GET REQUEST :: BEGIN --------------------------------------------------------
+                            // -- AJAX GET REQUEST :: BEGIN ------------------------------------------------------------
+
                             $.ajax({
                                 type: 'GET',
                                 url: host + '/rest/clicks',
@@ -493,19 +498,18 @@ $(document).ready(function () {
                                 async: true,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
+                                        console.log('entry.clicks ' + entry.clicks);
+                                        console.log('entry.card ' + entry.card);
+                                        console.log(bingoResponseData);
+
                                         if (entry.clicks >= 6) {
                                             buzzwordConfirmed[entry.card] = true;
-                                        } else {
-                                            //buzzwordConfirmed[entry.card] = true;
-                                            console.log('entry.clicks ' + entry.clicks);
-                                            console.log('entry.card ' + entry.card);
-                                            console.log(bingoResponseData);
                                         }
-
                                     });
                                 }
                             });
 
+                            /*
                             $.ajax({
                                 type: 'GET',
                                 url: host + '/rest/click',
@@ -522,12 +526,12 @@ $(document).ready(function () {
                                     });
                                 }
                             });
+                            */
 
                             // -- AJAX POST REQUEST :: END ---------------------------------------------------------
 
-                            if (!buzzwordConfirmed[id_img] && timeoutExit < 42) {
-                                //console.log(buzzwordConfirmed[id_img]);
-                                setTimeout(checkBuzzword, 3000);
+                            if (!buzzwordConfirmed[id_img] && timeoutExit < 13) {
+                                setTimeout(checkBuzzword, 14000);
                             }
 
                             if (buzzwordConfirmed[id_img]) {
@@ -545,7 +549,7 @@ $(document).ready(function () {
                                 buzzwordConfirmed[id_img] = true;
                                 buzzwordBusy[id_img] = false;
                             } else {
-                                if (!buzzwordConfirmed[id_img] && timeoutExit >= 42) {
+                                if (!buzzwordConfirmed[id_img] && timeoutExit >= 13) {
                                     $(that).removeClass("orange_zelle");
                                     $(that).removeClass("question");
                                     $(that).removeClass("pulse-button");
@@ -553,7 +557,7 @@ $(document).ready(function () {
                                     clearTimeout(checkBuzzword);
                                     buzzwordBusy[id_img] = false;
 
-                                    // -- AJAX POST REQUEST :: BEGIN ---------------------------------------------------------------
+                                    // -- AJAX POST REQUEST :: BEGIN ---------------------------------------------------
 
                                     // Buzzword id_img in DB schreiben
                                     if (!buzzwordConfirmed[id_img]) {
@@ -578,14 +582,11 @@ $(document).ready(function () {
                                         });
                                     }
 
-                                    // -- AJAX POST REQUEST :: END -----------------------------------------------------------------
-
-
+                                    // -- AJAX POST REQUEST :: END -----------------------------------------------------
                                 }
                             }
                         }());
                     }
-
                 }
             }
         });
@@ -617,7 +618,6 @@ $(document).ready(function () {
                 } else {
                     var id_img = parseInt($(this).attr('data-img-id'));
 
-
                     var buzzwordBusyToNum = _.reduce(buzzwordBusy, function (result, val, idx) {
                         if (val) {
                             result.push(idx);
@@ -627,7 +627,10 @@ $(document).ready(function () {
 
                     //console.log(buzzwordBusyToNum.length);
 
-                    if (!buzzwordBusy[id_img] && buzzwordBusyToNum.length < 6) {
+                    // Wenn die Karte noch nicht geklickt wurde und
+                    // wenn nicht mehr als 3 Karten gleichzeitig angeklickt wurden, dann
+                    // werden die Klicks an den Server übertragen...
+                    if (!buzzwordBusy[id_img] && buzzwordBusyToNum.length < 3) {
                         buzzwordBusy[id_img] = true;
                         $(this).addClass("orange_zelle");
                         $(this).addClass("questionbuzz");
@@ -646,7 +649,7 @@ $(document).ready(function () {
                                 data: JSON.stringify({card: id_img}),
                                 contentType: 'application/json; charset=utf-8',
                                 dataType: 'json',
-                                async: true,
+                                async: false,
                                 success: function (bingoResponseData) {
                                     bingoResponseData.clicks.forEach(function (entry) {
                                         if (entry.clicks >= 6) {
@@ -665,7 +668,7 @@ $(document).ready(function () {
                         // this in das timeout intervall überführen
                         var that = this;
 
-                        // rekursives Timeout für 40 mal 3 sekunden, unterbrochen von buzzwordbestätigung per DB
+                        // rekursives Timeout für 40 mal alle 14 sekunden, unterbrochen von buzzwordbestätigung per DB
                         (function checkBuzzword() {
                             //console.log(id_img);
                             //console.log(timeoutExit);
@@ -706,7 +709,7 @@ $(document).ready(function () {
                                 }
                             });
 
-
+                            /*
                             $.ajax({
                                 type: 'GET',
                                 url: host + '/rest/click',
@@ -729,12 +732,13 @@ $(document).ready(function () {
                                     });
                                 }
                             });
+                            */
 
                             // -- AJAX POST REQUEST :: END ---------------------------------------------------------
 
-                            if (!buzzwordConfirmed[id_img] && timeoutExit < 42) {
+                            if (!buzzwordConfirmed[id_img] && timeoutExit < 13) {
                                 //console.log(buzzwordConfirmed[id_img]);
-                                setTimeout(checkBuzzword, 3000);
+                                setTimeout(checkBuzzword, 14000);
                             }
 
                             if (buzzwordConfirmed[id_img]) {
@@ -751,14 +755,14 @@ $(document).ready(function () {
                                 buzzwordConfirmed[id_img] = true;
                                 buzzwordBusy[id_img] = false;
                             } else {
-                                if (!buzzwordConfirmed[id_img] && timeoutExit >= 42) {
+                                if (!buzzwordConfirmed[id_img] && timeoutExit >= 13) {
                                     $(that).removeClass("orange_zelle");
                                     $(that).removeClass("questionbuzz");
                                     $(that).removeClass("pulse-button");
                                     timeoutExit = 1;
                                     clearTimeout(checkBuzzword);
                                     buzzwordBusy[id_img] = false;
-				    
+
                                     // -- AJAX POST REQUEST :: BEGIN ---------------------------------------------------------------
 
                                     // Buzzword id_img in DB schreiben
@@ -784,12 +788,11 @@ $(document).ready(function () {
                                         });
                                     }
 
-                                    // -- AJAX POST REQUEST :: END -----------------------------------------------------------------				    
+                                    // -- AJAX POST REQUEST :: END -----------------------------------------------------------------
                                 }
                             }
                         }());
                     }
-
                 }
             }
         });
