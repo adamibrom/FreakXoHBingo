@@ -26,7 +26,7 @@ class PageController extends AbstractController
     public function indexAction()
     {
         return $this->render(
-            'BingoBundle:Page:index.html.twig',
+            'BingoBundle::bingo.html.twig',
             array(
                 'name' => 'FreakXoHBingo'
             )
