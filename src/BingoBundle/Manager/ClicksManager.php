@@ -35,10 +35,12 @@ class ClicksManager
      */
     public function getCardClicksData()
     {
-        $clicksData = $this->getMemcache()->get('CardClicksData');
+        if ($this->getTimeToLive() >= 1) {
+            $clicksData = $this->getMemcache()->get('CardClicksData');
 
-        if ($clicksData) {
-            return $clicksData;
+            if ($clicksData) {
+                return $clicksData;
+            }
         }
 
         $clicksQuery = new ClickQuery();
@@ -57,8 +59,11 @@ class ClicksManager
             $clicksData[$row]['sort_order'] = $row;
         }
 
+
         // Result cachen um MySQL Server zu entlasten...
-        $this->getMemcache()->set('CardClicksData', $clicksData, 0, $this->getTimeToLive());
+        if ($this->getTimeToLive() >= 1) {
+            $this->getMemcache()->set('CardClicksData', $clicksResult, 0, $this->getTimeToLive());
+        }
 
         return $clicksData;
     }
@@ -69,12 +74,14 @@ class ClicksManager
      * @param int $interval
      * @return array
      */
-    public function getCardClicksDataWithinInterval($interval = 45)
+    public function getCardClicksDataWithinInterval($interval = 120)
     {
-        $clicksResult = $this->getMemcache()->get('CardClicksDataWithinInterval');
+        if ($this->getTimeToLive() >= 1) {
+            $clicksResult = $this->getMemcache()->get('CardClicksDataWithinInterval');
 
-        if ($clicksResult) {
-            return $clicksResult;
+            if ($clicksResult) {
+                return $clicksResult;
+            }
         }
 
         $query = "
@@ -103,7 +110,9 @@ class ClicksManager
         $clicksResult = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         // Result cachen um MySQL Server zu entlasten...
-        $this->getMemcache()->set('CardClicksDataWithinInterval', $clicksResult, 0, $this->getTimeToLive());
+        if ($this->getTimeToLive() >= 1) {
+            $this->getMemcache()->set('CardClicksDataWithinInterval', $clicksResult, 0, $this->getTimeToLive());
+        }
 
         return $clicksResult;
     }
@@ -114,14 +123,8 @@ class ClicksManager
      * @param int $seconds
      * @return array
      */
-    public function getCardClicksDataWithinSeconds($seconds = 45)
+    public function getCardClicksDataWithinSeconds($seconds = 120)
     {
-        $clickResult = $this->getMemcache()->get('CardClicksDataWithinSeconds');
-
-        if ($clickResult) {
-            return $clickResult;
-        }
-
         $query = "
             SELECT game_id,card,count(card) as clicks
             FROM `bingo_click`
@@ -134,9 +137,6 @@ class ClicksManager
         $stmt = $con->prepare($query);
         $stmt->execute();
         $clickResult = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        // Result cachen um MySQL Server zu entlasten...
-        $this->getMemcache()->set('CardClicksDataWithinSeconds', $clickResult, 0, $this->getTimeToLive());
 
         return $clickResult;
     }

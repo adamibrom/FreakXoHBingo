@@ -68,7 +68,8 @@ class RestClickController extends AbstractRestBaseController
         return $this->ok(
             array(
                 'name' => 'FreakXoHBingo',
-                'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
+                'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds(),
+                'all_clicks' => $this->getClicksManager()->getCardClicksDataWithinInterval()
             )
         );
     }

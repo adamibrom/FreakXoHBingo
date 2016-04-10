@@ -33,7 +33,7 @@ class RestClicksController extends AbstractRestBaseController
         return $this->ok(
             array(
                 'name' => 'FreakXoHBingo',
-                'clicks' => $clicksData
+                'all_clicks' => $clicksData
             )
         );
     }

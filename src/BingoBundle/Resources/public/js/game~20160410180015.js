@@ -412,6 +412,9 @@ $(document).ready(function () {
 
         console.log('clickSource = ' + clickSource);
 
+        if (userRejectedNum >= missingBingoCardsCount && !$(this).hasClass("rote_zelle")) {
+            
+        }
         if (userRejectedNum >= missingBingoCardsCount && !$that.hasClass("rote_zelle")) {
             return null;
         }

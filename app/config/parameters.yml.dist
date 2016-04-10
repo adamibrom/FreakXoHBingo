@@ -22,5 +22,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     # Memcache Time
-    # Set the Caching Time in Seconds. Default: 0; Live: 42
-    caching_time:      0
+    # Set the Caching Time in Seconds. Default: 1; Live: 42
+    caching_time:      1
