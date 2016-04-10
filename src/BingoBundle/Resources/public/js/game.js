@@ -33,7 +33,7 @@ $(document).ready(function () {
     var buzzwordBusy = new Array(config.buzzwordCount);
     var wonBingos = new Array(143);
     var userRejected = new Array(24,39,55,77,78,85,94,19,88,71,59,8,55,1,20,35,7,31,57,44,4,67,86,52,89);
-    var userRejectedNum = 0;
+    var userRejectedNum = userRejected.length;
     var totalScore = 0;
     var $bingoBody = $('#BingoBody');
     var $BuzzwordsBody = $('#BuzzwordsBody');
