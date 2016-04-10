@@ -22,12 +22,12 @@ class ClicksManager
      * ClicksManager constructor.
      *
      * @param \Lsw\MemcacheBundle\Cache\AntiDogPileMemcache $memcache
+     * @param int  $cachingTime
      */
-    public function __construct($memcache = null)
+    public function __construct($memcache = null, $cachingTime = 0)
     {
-        if (!is_null($memcache)) {
-            $this->memcache = $memcache;
-        }
+        $this->memcache = $memcache;
+        $this->cachingTime = $cachingTime;
     }
 
     /**
@@ -179,11 +179,15 @@ class ClicksManager
     }
 
     /**
+     * @var int
+     */
+    protected $cachingTime = 0;
+
+    /**
      * @return int
      */
     protected function getTimeToLive()
     {
-        //return 42 * 6;
-        return 42;
+        return $this->cachingTime;
     }
 }

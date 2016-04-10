@@ -1,5 +1,5 @@
 services:
     bingo.clicks.manager:
         class: BingoBundle\Manager\ClicksManager
-        arguments: [ @memcache.default ]
+        arguments: [ @memcache.default, %caching_time% ]
         #arguments: [@service_id, "plain_value", %parameter%]
