@@ -37,7 +37,13 @@
 /vendor/
 
 # Assets and user uploads
+/web/assets/
 /web/bundles/
+/web/css/
+/web/font/
+/web/img/
+/web/js/
+/web/svg/
 /web/uploads/
 
 # PHPUnit
