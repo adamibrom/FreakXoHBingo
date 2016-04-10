@@ -3,44 +3,42 @@
 namespace BingoBundle\Controller;
 
 // these import the "@Route", "@Method", "@ParamConverter" and "@Template" annotations...
-use Propel\Runtime\ActiveQuery\Criteria;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 // these import the "@View" annotations for FOS Rest Bundle...
-use FOS\RestBundle\Controller\Annotations as Rest;
+//use FOS\RestBundle\Controller\Annotations as Rest;
 
-use BaseBundle\Controller\AbstractRestController;
-use BingoBundle\Manager\ClicksManager;
 use BingoBundle\Propel\Click;
 use BingoBundle\Propel\ClickQuery;
-use Propel\Runtime\Propel;
+//use Propel\Runtime\Propel;
+//use Propel\Runtime\ActiveQuery\Criteria;
+use Criteria;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Class RestclickController
  *
  * @package BingoBundle\Controller
  */
-class RestClickController extends AbstractRestController
+class RestClickController extends AbstractRestBaseController
 {
     /**
      * Methode zum Festhalten eines Klicks eines Spielers innerhalb eines Spiels.
      *
      * @Route("/rest/click", name="bingo_rest_click", defaults={ "_format" = "json" })
      * @Method("GET")
-     * @Rest\View()
      * @return array
      */
     public function getClickAction()
     {
-        return array(
-            'name' => 'FreakXoHBingo',
-            'version' => Kernel::VERSION,
-            'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
+        return $this->ok(
+            array(
+                'name' => 'FreakXoHBingo',
+                'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
+            )
         );
     }
 
@@ -49,7 +47,6 @@ class RestClickController extends AbstractRestController
      *
      * @Route("/rest/click", name="bingo_rest_click_post", defaults={ "_format" = "json" })
      * @Method("POST")
-     * @Rest\View()
      * @param Request $request
      * @return array
      */
@@ -68,10 +65,11 @@ class RestClickController extends AbstractRestController
             $click->save();
         }
 
-        return array(
-            'name' => 'FreakXoHBingo',
-            'version' => Kernel::VERSION,
-            'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
+        return $this->ok(
+            array(
+                'name' => 'FreakXoHBingo',
+                'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
+            )
         );
     }
 
@@ -80,7 +78,6 @@ class RestClickController extends AbstractRestController
      *
      * @Route("/rest/click", name="bingo_rest_click_delete", defaults={ "_format" = "json" })
      * @Method("DELETE")
-     * @Rest\View()
      * @param Request $request
      * @return array
      */
@@ -95,26 +92,16 @@ class RestClickController extends AbstractRestController
             }
 
             $click = ClickQuery::create()
-                ->orderByTimeCreate(Criteria::DESC)
+                ->orderByTimeCreate(\Criteria::DESC)
                 ->findOneByCard($clickRequestData['card']);
             $click->delete();
         }
 
-        return array(
-            'name' => 'FreakXoHBingo',
-            'version' => Kernel::VERSION,
-            'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
+        return $this->ok(
+            array(
+                'name' => 'FreakXoHBingo',
+                'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
+            )
         );
-
-    }
-
-    // -- PROTECTED ----------------------------------------------------------------------------------------------------
-
-    /**
-     * @return ClicksManager
-     */
-    protected function getClicksManager()
-    {
-        return $this->get('bingo.clicks.manager');
     }
 }

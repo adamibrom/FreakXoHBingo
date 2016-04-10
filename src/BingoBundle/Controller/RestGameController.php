@@ -9,28 +9,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 // these import the "@View" annotations for FOS Rest Bundle...
-use FOS\RestBundle\Controller\Annotations as Rest;
+//use FOS\RestBundle\Controller\Annotations as Rest;
 
-use BaseBundle\Controller\AbstractAdminController;
 use BingoBundle\Propel\Game;
 use BingoBundle\Propel\GameQuery;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * Class AdminGameController
+ * Class RestGameController
  *
  * @package BingoBundle\Controller
  */
-class AdminGameController extends AbstractAdminController
+class RestGameController extends AbstractRestBaseController
 {
     /**
      * Methode zum Erstellen oder zum Bearbeiten eines Spiels.
      *
-     * @Route("/admin/game", name="bingo_game")
-     * @Route("/admin/rest/game", name="bingo_game_rest_post", defaults={ "_format" = "json" })
+     * @Route("/rest/game", name="bingo_game_rest_post", defaults={ "_format" = "json" })
      * @Method("POST")
-     * @Rest\View()
      * @param Request $request
      * @return array
      */
@@ -42,6 +38,7 @@ class AdminGameController extends AbstractAdminController
             $locale = $request->request->get('locale');
         }
 
+        $game = null;
         $id = $request->request->get('id', null);
         $slug = $request->request->get('slug');
         $name = $request->request->get('name');
@@ -59,13 +56,20 @@ class AdminGameController extends AbstractAdminController
         $game->setSlug($slug);
         $game->setLocale($locale);
         $game->setName($name);
+
+        $user = $this->getUser();
+
+        if (!is_null($user)) {
+            $game->setUser($user);
+        }
+
         $game->save();
 
         return array(
             'name' => 'FreakXoHBingo',
-            'version' => Kernel::VERSION,
+            'user' => $this->getUserData(),
             'status' => true,
-            'game' => $game
+            'game' => $game->toArray()
         );
     }
 }

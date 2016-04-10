@@ -10,7 +10,7 @@ use FOS\RestBundle\View\View;
  *
  * @package BaseBundle\Controller
  */
-class AbstractRestController extends FOSRestController
+abstract class AbstractRestController extends FOSRestController
 {
     const HTTP_OK = 200;
     const HTTP_FOUND = 302;
@@ -29,5 +29,34 @@ class AbstractRestController extends FOSRestController
         return View::create()
             ->setStatusCode(self::HTTP_OK)
             ->setData($data);
+    }
+
+    /**
+     * Get a user from the Security Token Storage.
+     *
+     * @return \FOS\UserBundle\Propel\User
+     */
+    public function getUser()
+    {
+        return parent::getUser();
+    }
+
+    /**
+     * @return array
+     */
+    public function getUserData()
+    {
+        $user = $this->getUser();
+
+        if (is_null($user)) {
+            return [];
+        }
+
+        $userData = [
+            'id' => $user->getId(),
+            'username' => $user->getUsername(),
+        ];
+
+        return $userData;
     }
 }

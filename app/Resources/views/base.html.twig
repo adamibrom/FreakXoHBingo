@@ -10,38 +10,101 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
     {% block stylesheets %}
+        {% stylesheets filter='cssrewrite'
+            '@BingoBundle/Resources/public/css/angular.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
         <!-- Font Awesome 4.5.0 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-        <!-- Font Awesome Animation 0.0.7 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.7/font-awesome-animation.min.css">
+        <!-- Font Awesome Animation 0.0.8 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.8/font-awesome-animation.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- Animate.css -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
+        <!-- Animate.css 3.5.1 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
     {% endblock %}
 </head>
 <body ng-app="BingoApp">
+{% if app.request.get('_route') == 'bingo_index' or app.request.get('_route') == 'bingo_showview' or app.request.get('_route') == 'bingo_a4druck' %}
+    <!-- Zur Zeit keine Navbar während des Bingo Spiels! -->
+{% else %}
+    <style type="text/css">
+        body {
+            min-height: 2000px;
+            padding-top: 70px;
+        }
+    </style>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('bingo_start') }}">FreakXoHBingo</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{ path('bingo_start') }}">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li><a href="{{ path('fos_user_profile_edit') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% endif %}
+                </ul>
+                {#
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <p class="navbar-text navbar-right">
+                        <!--{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}-->
+                        Eingelogged als <a href="{{ path('fos_user_profile_show') }}" class="navbar-link">{{ app.user.username }}</a>
+                    </p>
+                {% endif %}
+                #}
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+{% endif %}
 {% block body %}{% endblock %}
 {% block javascripts %}
-    <!-- jQuery 2.1.4 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- jQuery 2.2.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <!-- JSON in JavaScript 2015-05-03 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- lodash 3.10.1 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
-    <!-- AngularJS 1.4.8 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js"></script>
-    <!-- Restangular 1.5.1 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.5.1/restangular.min.js"></script>
-    <!-- Angular UI Bootstrap 0.14.3 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <!-- AngularJS 1.5.0 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
+    <!-- Restangular 1.5.2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.5.2/restangular.min.js"></script>
+    <!-- Angular UI Bootstrap 1.2.4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.min.js"></script>
+    {% javascripts
+        '@BingoBundle/Resources/public/app/angular-slugify.js'
+        '@BingoBundle/Resources/public/app/bingo-app.js'
+        '@BingoBundle/Resources/public/app/service/loader.js'
+        '@BingoBundle/Resources/public/app/service/message.js'
+        '@BingoBundle/Resources/public/app/service/message-box.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 </body>
 </html>

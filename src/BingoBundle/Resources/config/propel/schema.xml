@@ -27,21 +27,20 @@
         <!-- USER :: END -->
 
         <!-- OWNER :: BEGIN -->
-        <!--
-        <column name="owner_id" phpName="ownerId" type="BIGINT" size="20" sqlType="BIGINT(20) UNSIGNED"/>
+        <!--<column name="owner_id" phpName="ownerId" type="BIGINT" size="20" sqlType="BIGINT(20) UNSIGNED"/>-->
+        <column name="owner_id" phpName="ownerId" type="INTEGER" size="11"/>
 
-        <index name="I_Bingo_ContactPersonId">
+        <index name="I_Bingo_Game_OwnerId">
             <index-column name="owner_id" />
         </index>
 
-        <foreign-key foreignTable="bingo_owner" name="FK_Bingo_GameToOwner">
-            <reference local="owner_id" foreign="id"/>
+        <foreign-key foreignTable="fos_user" name="FK_Bingo_GameToOwner">
+            <reference local="owner_id" foreign="id" />
         </foreign-key>
 
         <behavior name="typehintable">
-            <parameter name="owner" value="BingoBundle\Propel\Person"/>
+            <parameter name="owner" value="FOS\UserBundle\Propel\User"/>
         </behavior>
-        -->
         <!-- OWNER :: END -->
 
         <column name="slug" phpName="Slug" type="VARCHAR" size="64" required="false"/>

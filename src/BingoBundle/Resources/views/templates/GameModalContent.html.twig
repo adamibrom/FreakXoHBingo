@@ -1,0 +1,49 @@
+<script type="text/ng-template" id="GameModalContent.html">
+    <div class="modal-header">
+        <h3>Neues Bingo Spiel erstellen!</h3>
+    </div>
+    <div class="modal-body">
+        <!--
+        <div class="clearfix"></div>
+        <pre>game: {[ game|json ]}</pre>
+        <div class="clearfix"></div>
+        -->
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="inputId" class="col-sm-2 control-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputId" placeholder="ID" readonly="readonly" ng-model="game.id" ng-value="game.id">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputUsername" placeholder="Username" readonly="readonly" ng-value="user.username !== undefined ? user.username : 'anonymous'">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputLocale" class="col-sm-2 control-label">Locale</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputLocale" placeholder="Locale" name="locale" value="de_DE" readonly="readonly" ng-init="game.locale='de_DE'" ng-model="game.locale" ng-value="game.locale">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputSlug" class="col-sm-2 control-label">Slug</label>
+                <div class="col-sm-10">
+                    <slug from="game.name" to="game.slug">
+                    <input type="text" value="{[ game.name | slugify ]}" class="form-control" id="inputSlug" placeholder="slug" ng-model="game.slug" ng-value="game.slug">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="game.name" ng-value="game.name">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="modalOk()">OK</button>
+        <button class="btn btn-warning" ng-click="modalCancel()">Cancel</button>
+    </div>
+</script>
