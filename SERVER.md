@@ -1,5 +1,7 @@
 # Server Installation
 
+Diese Anleitung beschreibt, wie ein Web-Server installiert und eingerichtet wird. Die umfasst nicht die [Installation der Applikation](INSTALL.md)
+
 Diese Anleitung geht davon aus, dass auf dem Server Ubuntu (ggf. Debian - nicht getestet) installiert ist.
 
 Ziel ist es das Projekt auf PHP 7 luafen zu lassen. Als Web-Server kann Nginx oder Apache verwendet werden. Als Datenbank wird MySQL 5.6 installiert.
@@ -8,15 +10,6 @@ Umgebung vorbereiten:
 
     sudo apt-get install git git-flow
     sudo apt-get install software-properties-common python-software-properties
-
-_**Optional:** Kleine aber sehr nützliche Anpassungen an der Shell:_
-
-    sudo apt-get install curl zsh
-    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-    
-Solle bei der Installation ein Fehler auftreten, dann hilft meistens:
-
-    chsh -s `which zsh` && /usr/bin/env zsh && . ~/.zshrc
 
 ## PHP 7 Installation
 
@@ -92,3 +85,14 @@ Anschließend muss PHP und / oder der Webserver neu gestartet werden (z.B. php7.
     sudo /etc/init.d/php7.0-fpm restart
 
 Nun kann der Memcache innerhalb der App verwendet werden (siehe: [https://github.com/LeaseWeb/LswMemcacheBundle](https://github.com/LeaseWeb/LswMemcacheBundle)).
+
+## ZSH Shell
+
+_**Optional:** Kleine aber sehr nützliche Anpassungen an der Shell:_
+
+    sudo apt-get install curl zsh
+    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+    
+Solle bei der Installation ein Fehler auftreten, dann hilft meistens:
+
+    chsh -s `which zsh` && /usr/bin/env zsh && . ~/.zshrc

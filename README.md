@@ -30,6 +30,8 @@ Die Grafiken basieren teilweise auf der PDF Karte von ePirat http://epir.at/d/Fr
 
 ## Installation
 
-[Anleitung für die Installation des Projekts](INSTALL.md)
+[Anleitung zur Installation und Konfiguration eines Servers.](SERVER.md)
 
-[Anleitung für die Installation eines Servers](SERVER.md)
+[Anleitung der Installation des Projekts vom Checkout bis zum Deployment.](INSTALL.md)
+
+[Anleitung für die Installation und Konfiguration von Symfony](SYMFONY.md)

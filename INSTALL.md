@@ -20,12 +20,20 @@ Ist der Code von Github lokal verfügbar, das Installationsscript Ausführen um 
 
     ./composer.sh i
 
-Von Symfony wird ein Dialog gestartet in dem dann die bei der [Server Installation](SERVER.md) (Datenbank User und Password) eingegebene Daten eingetragen werden.
+Von Symfony wird ein Dialog gestartet in dem dann die bei der [Server Installation](SERVER.md) (z.B. Datenbank Benutzer und Passwort) eingegebene Daten eingetragen werden.
 
 _**Hinweis:** Ist bei der Konfiguration etwas schief gelaufen, dann kann die Installation auch manuel erstellt werden. Hier zu die ```app/config/parameters.yml.dist``` in  ```app/config/parameters.yml``` kopieren und bearbeiten._
 
     cp app/config/parameters.yml.dist app/config/parameters.yml
     
+Wenn alles richtig ausgeführt wurde kann die App direkt verwendet werden.
+
+Für weitere Details zu Symfony und den Komponenten sind in die [Symfony Installation](SYMFONY.md) zu finden.
+
+## Konfiguration    
+
 Nun kann die Konfiguration bearbeitet werden:
 
     nano app/config/parameters.yml
+
+Für weitere Details zu Symfony und den Komponenten sind in die [Symfony Installation](SYMFONY.md) zu finden.
