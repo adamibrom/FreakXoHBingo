@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\Kernel;
  *
  * @package BingoRestBundle\Controller
  */
-class GameController extends AbstractRestController
+class GameController20160410 extends AbstractRestController
 {
     /**
      * Methode zum Auslesen aller verfügbaren Bingo Spiele.

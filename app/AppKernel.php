@@ -26,6 +26,9 @@ class AppKernel extends Kernel
             // Propel Bundle for Database ORM...
             new \Propel\Bundle\PropelBundle\PropelBundle(),
 
+            // Memcaching
+            new Lsw\MemcacheBundle\LswMemcacheBundle(),
+            
             // FOS Rest Bundle for Restfull API...
             //new JMS\SerializerBundle\JMSSerializerBundle($this),
             //new FOS\RestBundle\FOSRestBundle(),

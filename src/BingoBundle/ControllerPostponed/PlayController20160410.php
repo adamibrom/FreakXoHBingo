@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Kernel;
  *
  * @package BingoBundle\Controller
  */
-class PlayController extends AbstractController
+class PlayController20160410 extends AbstractController
 {
     /**
      * Play the Game Action.

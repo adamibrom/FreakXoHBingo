@@ -76,3 +76,19 @@ Einen Benutzer und eine entsprechende Datenbank erstellen:
     CREATE DATABASE bingo;
     CREATE USER 'bingo'@'127.0.0.1' IDENTIFIED BY 'qwer1234';
     GRANT ALL PRIVILEGES ON *.* TO 'bingo'@'127.0.0.1'; 
+
+## Memcache
+
+Memcache Deamon bzw. Server installieren:
+
+    sudo apt-get install memcached
+
+PHP Erweiterung installieren:
+
+    sudo apt-get install php-memcache
+
+Anschließend muss PHP und / oder der Webserver neu gestartet werden (z.B. php7.0-fpm):
+
+    sudo /etc/init.d/php7.0-fpm restart
+
+Nun kann der Memcache innerhalb der App verwendet werden (siehe: [https://github.com/LeaseWeb/LswMemcacheBundle](https://github.com/LeaseWeb/LswMemcacheBundle)).

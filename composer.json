@@ -29,6 +29,7 @@
         "php": ">=5.6.0",
         "phpunit/phpunit": "5.4.x-dev",
         "phpunit/phpunit-mock-objects": "3.1.x-dev",
+        "phpunit/php-code-coverage": "4.0.x-dev",
 
         "doctrine/orm": "2.6.x-dev",
         "doctrine/doctrine-bundle": "1.6.x-dev",
@@ -39,9 +40,11 @@
         "symfony/monolog-bundle": "2.8.x-dev",
 
         "sensio/distribution-bundle": "4.0.x-dev",
-        "sensio/framework-extra-bundle": "3.0.x-dev",
+        "sensio/framework-extra-bundle": "v3.0.16",
 
         "incenteev/composer-parameter-handler": "2.1.x-dev",
+
+        "leaseweb/memcache-bundle": "v2.1.8",
 
         "propel/propel1": "1.6.x-dev",
         "propel/propel-bundle": "1.5.x-dev",

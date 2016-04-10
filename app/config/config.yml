@@ -48,7 +48,7 @@ framework:
     http_method_override: true
 
 sensio_framework_extra:
-    view: { annotations: false }
+    view: { annotations: true }
     router: { annotations: true }
     request: { converters: true }
     cache: { annotations: true }
@@ -143,3 +143,25 @@ fos_oauth_server:
     auth_code_class: BingoBundle\Entity\AuthCode
     service:
         user_provider: fos_user.user_manager.default
+
+# Memcache Config
+lsw_memcache:
+    pools:
+        default:
+            servers:
+                - { host: 127.0.0.1, tcp_port: 11211, weight: 100 }
+            options:
+                allow_failover: true
+                max_failover_attempts: 20
+                default_port: 11211
+                chunk_size: 32768
+                protocol: ascii
+                hash_strategy: consistent
+                hash_function: crc32
+                #redundancy: true
+                #session_redundancy: 2
+                compress_threshold: 20000
+                lock_timeout: 15
+        sessions:
+            servers:
+                - { host: localhost, tcp_port: 11212 }
