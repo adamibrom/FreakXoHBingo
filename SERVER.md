@@ -86,6 +86,18 @@ Anschließend muss PHP und / oder der Webserver neu gestartet werden (z.B. php7.
 
 Nun kann der Memcache innerhalb der App verwendet werden (siehe: [https://github.com/LeaseWeb/LswMemcacheBundle](https://github.com/LeaseWeb/LswMemcacheBundle)).
 
+### Memcache Stats
+
+Um zu schauen wie sich der Memcache verhält kann man wie folt sich eine Echtzeit Statistik ausgeben lassen:
+
+    watch 'php -r '"'"'$m=new Memcache;$m->connect("10.73.20.99", 11211);print_r($m->getstats());'"'"
+
+Hierbei wir in kurzen Zeitabständen wie PHP die Memcache Statistik aufgerufen.
+
+Relevante Werte sind ```cmd_set```, ```cmd_get```, ```get_hits``` und ```get_misses```.
+
+> These numbers mean that ```cmd_set``` items have been stored in the cache. ```cmd_get``` attempts to retrieve items have been performed and of those only ```get_hits``` items has been found. That means that the likelihood of any item set in the cache to be retrieved is only about xx% (```cmd_set``` / ```cmd_get```). That is not an effective use of the cache because most of the items stored in it are never used. To me, that suggests you are caching the wrong data. You should try and figure out which data is most frequently used and only cache that instead. Especially if you are running out of cache space often.
+
 ## ZSH Shell
 
 _**Optional:** Kleine aber sehr nützliche Anpassungen an der Shell:_
