@@ -6,6 +6,13 @@
 # get action
 action="$1"
 
+if [ "$2" == "prod" ] || [ "$2" == "dev" ] || [ "$2" == "test" ]
+then
+    env="$2"
+else
+    env="prod"
+fi
+
 # Install or update composer
 if [ ! -f composer.phar ]
 then
@@ -29,19 +36,25 @@ then
     read -p "${orange}(i) Install or (u) update or (r) reinstall composer packages (i/u/r/n)? ${reset}"
 fi
 
-export SYMFONY_ENV=prod
+if [ "$env" == "prod" ]
+then
+    export SYMFONY_ENV=prod
+    param="--optimize-autoloader "
+else
+    param=""
+fi
 
 if [ "$REPLY" == "i" ] || [ "$action" == "i" ]
 then
-    php composer.phar install --optimize-autoloader
+    php composer.phar install $param
     echo "${underline}${green}Composer packages installed${reset}"
 elif [ "$REPLY" == "u" ] || [ "$action" == "u" ]
 then
-    php composer.phar update --optimize-autoloader
+    php composer.phar update $param
     echo "${underline}${green}Composer packages updated${reset}"
 elif [ "$REPLY" == "r" ] || [ "$action" == "r" ]
 then
     rm vendor/* -rf
-    php composer.phar install --optimize-autoloader
+    php composer.phar install $param
     echo "${underline}${green}Composer packages installed${reset}"
 fi
