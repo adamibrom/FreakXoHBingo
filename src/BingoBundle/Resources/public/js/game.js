@@ -626,9 +626,9 @@ $(document).ready(function () {
             if (!buzzwordConfirmed[id_img]) {
                 $.ajax({
                     type: 'DELETE',
-                    url: host + '/rest/click',
+                    //url: host + '/rest/click/' + '?' + $.param({"card": id_img}),
+                    url: host + '/rest/click/' + id_img,
                     crossDomain: false,
-                    data: JSON.stringify({card: id_img}),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
                     async: true,

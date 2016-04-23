@@ -75,32 +75,38 @@ class RestClickController extends AbstractRestBaseController
     }
 
     /**
-     * Methode zum Lösen des letzen Klicks für eine Karte.
+     * Methode zum Löschen des letzen Klicks für eine Karte.
      *
-     * @Route("/rest/click", name="bingo_rest_click_delete", defaults={ "_format" = "json" })
+     * @Route("/rest/click/{card}", requirements={"id" = "\d+"}), name="bingo_rest_click_delete", defaults={ "_format" = "json" })
      * @Method("DELETE")
-     * @param Request $request
+     * @param int $card
      * @return array
      */
-    public function deleteClickAction(Request $request)
+    public function deleteClickAction($card)
     {
-        if ($request->getMethod() == 'DELETE') {
-            $clickRequestData = array();
+        $click = ClickQuery::create()
+            ->orderByTimeCreate(\Criteria::DESC)
+            ->findOneByCard($card);
 
-            if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-                $clickRequestData = json_decode($request->getContent(), true);
-                //$request->replace(is_array($data) ? $data : array());
-            }
-
-            $click = ClickQuery::create()
-                ->orderByTimeCreate(\Criteria::DESC)
-                ->findOneByCard($clickRequestData['card']);
+        if (!is_null($click)) {
             $click->delete();
+            $deletedClick = array(
+                'deleted' => $click->isDeleted(),
+                'card' => $click->getCard(),
+                'game_id' => $click->getGameId(),
+                'player_id' => $click->getPlayerId(),
+            );
+        } else {
+            $deletedClick = array(
+                'deleted' => false,
+                'card' => $card
+            );
         }
 
         return $this->ok(
             array(
                 'name' => 'FreakXoHBingo',
+                'click' => $deletedClick,
                 'clicks' => $this->getClicksManager()->getCardClicksDataWithinSeconds()
             )
         );
