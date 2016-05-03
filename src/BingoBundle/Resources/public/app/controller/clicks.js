@@ -6,6 +6,9 @@ BingoApp.controller('BingoClicksController', function ($scope, $interval, $local
      */
     $scope.$log = $log;
 
+    /**
+     * Log that this controller is started.
+     */
     $log.log('The "BingoClicksController" started!');
 
     /**
@@ -97,15 +100,15 @@ BingoApp.controller('BingoClicksController', function ($scope, $interval, $local
         clicksAjax.get('').then(function (response) {
             //$scope.setLoading(false);
 
-            if (typeof response.clicks != 'undefined') {
-                //$scope.clicks = response.clicks;
+            if (typeof response.all_clicks != 'undefined') {
+                //$scope.clicks = response.all_clicks;
 
-                for (var i = 0; i < response.clicks.length; i++) {
-                    if (!$scope.cardExist(response.clicks[i].card)) {
-                        $scope.clicks.push(response.clicks[i]);
+                for (var i = 0; i < response.all_clicks.length; i++) {
+                    if (!$scope.cardExist(response.all_clicks[i].card)) {
+                        $scope.clicks.push(response.all_clicks[i]);
                     }
 
-                    $scope.clicks[$scope.getCardIndex(response.clicks[i].card)].order = i;
+                    $scope.clicks[$scope.getCardIndex(response.all_clicks[i].card)].order = i;
                 }
             }
         }, function () {

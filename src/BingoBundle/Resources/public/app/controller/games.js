@@ -6,6 +6,9 @@ BingoApp.controller('BingoGamesController', function ($scope, $locale, $window, 
      */
     $scope.$log = $log;
 
+    /**
+     * Log that this controller is started.
+     */
     $log.log('The "BingoGamesController" started!');
 
     /**
