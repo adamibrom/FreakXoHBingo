@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4a37918f24c7fb40c6fe228f135cf836",
-    "content-hash": "0f9ac8d6e753d8a0a567cf616cf25873",
+    "hash": "deaa7df3bfb20e6163ce4835d28d273f",
+    "content-hash": "a71e669f18c1fe3706e8a3559e97146e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -912,12 +912,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "a422c7a230f1e88e0e57a70dbe7eb7571b2abf35"
+                "reference": "41ba820efd30d44e651c8318618d5c6a32ac901b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/a422c7a230f1e88e0e57a70dbe7eb7571b2abf35",
-                "reference": "a422c7a230f1e88e0e57a70dbe7eb7571b2abf35",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/41ba820efd30d44e651c8318618d5c6a32ac901b",
+                "reference": "41ba820efd30d44e651c8318618d5c6a32ac901b",
                 "shasum": ""
             },
             "require": {
@@ -945,7 +945,7 @@
                 "symfony/form": "^2.7|^3.0",
                 "symfony/phpunit-bridge": "~2.7|^3.0",
                 "symfony/security-bundle": "^2.7|^3.0",
-                "symfony/serializer": "^2.7|^3.0",
+                "symfony/serializer": "^2.7.11|^3.0.4",
                 "symfony/twig-bundle": "^2.7|^3.0",
                 "symfony/validator": "^2.7|^3.0",
                 "symfony/web-profiler-bundle": "^2.7|^3.0",
@@ -992,7 +992,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2016-04-27 17:07:23"
+            "time": "2016-05-04 11:04:31"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -2179,12 +2179,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "6d3b505cb3a6143adcd58375870eb0b4b98636bc"
+                "reference": "9eb699e97e0097f05bcf1cd9bbb91c582a48bf9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6d3b505cb3a6143adcd58375870eb0b4b98636bc",
-                "reference": "6d3b505cb3a6143adcd58375870eb0b4b98636bc",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9eb699e97e0097f05bcf1cd9bbb91c582a48bf9e",
+                "reference": "9eb699e97e0097f05bcf1cd9bbb91c582a48bf9e",
                 "shasum": ""
             },
             "require": {
@@ -2234,7 +2234,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-04-21 05:23:34"
+            "time": "2016-05-04 12:34:12"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2869,16 +2869,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.5",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf"
+                "reference": "2292b116f43c272ff4328083096114f84ea46a56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
-                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/2292b116f43c272ff4328083096114f84ea46a56",
+                "reference": "2292b116f43c272ff4328083096114f84ea46a56",
                 "shasum": ""
             },
             "require": {
@@ -2915,7 +2915,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-02-26 18:40:46"
+            "time": "2016-05-04 07:59:13"
         },
         {
             "name": "sebastian/exporter",
@@ -3386,16 +3386,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.2",
+            "version": "5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8"
+                "reference": "68f50da0fdd6cb0146d17d6bde20b76e0e57e7fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d8db871a54619458a805229a057ea2af33c753e8",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/68f50da0fdd6cb0146d17d6bde20b76e0e57e7fb",
+                "reference": "68f50da0fdd6cb0146d17d6bde20b76e0e57e7fb",
                 "shasum": ""
             },
             "require": {
@@ -3435,7 +3435,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-05-01 08:45:47"
+            "time": "2016-05-01 08:46:16"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -4141,12 +4141,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "dd27b7d18315dc6f785ffff47c9c89ec4904f1f2"
+                "reference": "27c122e0ca98b7d44629ba71d3b45bfc6aaff476"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/dd27b7d18315dc6f785ffff47c9c89ec4904f1f2",
-                "reference": "dd27b7d18315dc6f785ffff47c9c89ec4904f1f2",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/27c122e0ca98b7d44629ba71d3b45bfc6aaff476",
+                "reference": "27c122e0ca98b7d44629ba71d3b45bfc6aaff476",
                 "shasum": ""
             },
             "require": {
@@ -4267,7 +4267,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-05-03 12:26:31"
+            "time": "2016-05-03 18:59:18"
         },
         {
             "name": "twig/twig",
@@ -4630,21 +4630,22 @@
         "phpunit/php-code-coverage": 20,
         "doctrine/orm": 20,
         "doctrine/doctrine-bundle": 20,
+        "friendsofsymfony/rest-bundle": 20,
+        "friendsofsymfony/oauth-server-bundle": 20,
+        "friendsofsymfony/user-bundle": 20,
+        "incenteev/composer-parameter-handler": 20,
+        "jms/serializer-bundle": 20,
+        "nelmio/api-doc-bundle": 20,
+        "propel/propel1": 20,
+        "propel/propel-bundle": 20,
+        "sensio/distribution-bundle": 20,
+        "swiftmailer/swiftmailer": 20,
         "symfony/symfony": 20,
         "symfony/assetic-bundle": 20,
         "symfony/swiftmailer-bundle": 20,
         "symfony/monolog-bundle": 20,
-        "sensio/distribution-bundle": 20,
-        "incenteev/composer-parameter-handler": 20,
-        "propel/propel1": 20,
-        "propel/propel-bundle": 20,
         "willdurand/propel-typehintable-behavior": 20,
         "willdurand/propel-statemachine-behavior": 20,
-        "friendsofsymfony/rest-bundle": 20,
-        "jms/serializer-bundle": 20,
-        "friendsofsymfony/user-bundle": 20,
-        "friendsofsymfony/oauth-server-bundle": 20,
-        "nelmio/api-doc-bundle": 20,
         "sensio/generator-bundle": 20,
         "symfony/phpunit-bridge": 20
     },
