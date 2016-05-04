@@ -109,6 +109,7 @@ BingoApp.controller('BingoClicksController', function ($scope, $interval, $local
                     }
 
                     $scope.clicks[$scope.getCardIndex(response.all_clicks[i].card)].order = i;
+                    $scope.clicks[$scope.getCardIndex(response.all_clicks[i].card)].imageUrl = "/bundles/bingo/img/" + response.all_clicks[i].card + ".svg";
                 }
             }
         }, function () {
