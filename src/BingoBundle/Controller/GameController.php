@@ -21,11 +21,12 @@ class GameController extends AbstractController
     /**
      * Methode zum Auslesen eines Spiels.
      *
-     * @Route("/game/{slug}", name="bingo_game_play")
+     * @Route("/play", name="bingo_game_play_null")
+     * @Route("/play/{slug}", name="bingo_game_play")
      * @param string $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function playAction($slug)
+    public function playAction($slug = null)
     {
         $locale = 'de_DE';
 
