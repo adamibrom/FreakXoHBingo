@@ -7,16 +7,28 @@
 
 {% block body %}
 <script type="text/javascript">
-    var username = "{{ user.username }}";
-    var game = {id: {{ game.id }}, slug: '{{ game.slug }}', name: '{{ game.name }}'};
 
-    {% if user.id == game.ownerId %}
-        var owner = true;
+    {% if user  %}
+    var user = {id: {{ user.id }}, username: '{{ user.username }}'};
     {% else %}
-        var owner = true;
+    var user = {id: 0, username: 'anon.'};
     {% endif %}
 
-    console.log(game);
+    //console.log(user);
+
+    var game = {id: {{ game.id }}, slug: '{{ game.slug }}', name: '{{ game.name }}'};
+
+    //console.log(game);
+
+    var player = {id: {{ player.id }}, name: '{{ player.name }}', uid: '{{ player.uid }}'};
+
+    //console.log(player);
+
+    {% if user and user.id == game.ownerId %}
+    var owner = true;
+    {% else %}
+    var owner = true;
+    {% endif %}
 
 </script>
 <div class="container">

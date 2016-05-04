@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use BaseBundle\Controller\AbstractController;
+use BingoBundle\Manager\GameManager;
+use BingoBundle\Manager\GamePlayerManager;
+use BingoBundle\Manager\PlayerManager;
 use BingoBundle\Propel\GameQuery;
 use FOS\UserBundle\Propel\User;
 
@@ -30,13 +33,16 @@ class GameController extends AbstractController
     public function playAction($slug = null)
     {
         $locale = 'de_DE';
+        $user = $this->getUser();
 
-        /** @var User $usr */
-        $user = $this->get('security.context')->getToken()->getUser();
+        $gameManager = new GameManager();
+        $game = $gameManager->getGameBySlug($slug, $locale);
 
-        $gamesQuery = new GameQuery();
-        $gamesQuery->joinWithI18n($locale);
-        $game = $gamesQuery->findOneBySlug($slug);
+        $playerManager = new PlayerManager();
+        $player = $playerManager->initPlayer($user);
+
+        $gamePlayerManager = new GamePlayerManager();
+        $gamePlayer = $gamePlayerManager->initGamePlayer($game, $player);
 
         return $this->render(
             'BingoBundle:Play:play.html.twig',
@@ -44,7 +50,24 @@ class GameController extends AbstractController
                 'name' => 'FreakXoHBingo Showview Monitor',
                 'user' => $user,
                 'game' => $game,
+                'player' => $player,
             )
         );
     }
+
+    /**
+     * @return \FOS\UserBundle\Propel\User
+     */
+    /*
+    protected function getUser()
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if (!($user instanceof User)) {
+            return null;
+        }
+
+        return $user;
+    }
+    */
 }
