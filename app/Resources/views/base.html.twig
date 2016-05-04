@@ -63,6 +63,14 @@
                     <li class="active"><a href="{{ path('bingo_start') }}">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form name="player" action="">
+                            <input name="playername" value="{{ player.name }}">
+                            <button type="submit">save</button>
+                        </form>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li><a href="{{ path('fos_user_profile_edit') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
