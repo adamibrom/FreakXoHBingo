@@ -32,7 +32,6 @@ $(document).ready(function () {
     var buzzwordConfirmed = new Array(config.buzzwordCount);
     var buzzwordBusy = new Array(config.buzzwordCount);
     var wonBingos = new Array(143);
-    var wonBuzzwords = new Array(0);
     var userRejected = new Array(19,88,71,59,8,55,1,20,35,7,31,57,44,4,67,86,52,89);
     var userRejectedNum = userRejected.length;
     var totalScore = 0;
@@ -551,10 +550,6 @@ $(document).ready(function () {
                         if (entry.clicks >= 6) {
                             buzzwordConfirmed[entry.card] = true;
                         }
-                        if (entry.clicks <= 6) {
-                            wonBuzzwords[entry.card] = entry.card;
-                            console.log(entry.card);
-                        }
                     });
 
                     activateBuzzword($that, clickSource, id_img);
@@ -680,7 +675,6 @@ $(document).ready(function () {
         }, []);
         var i = 1;
         totalScore = 0;
-        totalScore = wonBuzzwords.length * 10;
         $.each(winBoards, function (key, value) {
             if (containsAll(value, convertedToNum)) {
                 wonBingos[i] = key;
