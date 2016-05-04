@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use BaseBundle\Controller\AbstractController;
 use BingoBundle\Propel\GameQuery;
+use FOS\UserBundle\Propel\User;
 
 /**
  * Class GameController
@@ -30,6 +31,9 @@ class GameController extends AbstractController
     {
         $locale = 'de_DE';
 
+        /** @var User $usr */
+        $user = $this->get('security.context')->getToken()->getUser();
+
         $gamesQuery = new GameQuery();
         $gamesQuery->joinWithI18n($locale);
         $game = $gamesQuery->findOneBySlug($slug);
@@ -38,7 +42,8 @@ class GameController extends AbstractController
             'BingoBundle:Play:play.html.twig',
             array(
                 'name' => 'FreakXoHBingo Showview Monitor',
-                'game' => $game
+                'user' => $user,
+                'game' => $game,
             )
         );
     }

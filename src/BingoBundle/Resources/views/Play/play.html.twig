@@ -6,6 +6,19 @@
 {% endblock %}
 
 {% block body %}
+<script type="text/javascript">
+    var username = "{{ user.username }}";
+    var game = {id: {{ game.id }}, slug: '{{ game.slug }}', name: '{{ game.name }}'};
+
+    {% if user.id == game.ownerId %}
+        var owner = true;
+    {% else %}
+        var owner = true;
+    {% endif %}
+
+    console.log(game);
+
+</script>
 <div class="container">
     <div id="buzzwordText" class="buzzwordTextEmpty"></div>
     <div style="width: 1340px; overflow: hidden; margin-bottom: 0px">
