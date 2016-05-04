@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         #}
+        <link rel="stylesheet" href="/bundles/bingo/css/loading.css">
         <link rel="stylesheet" href="/bundles/bingo/css/angular.css">
     {% endblock %}
 </head>
@@ -41,7 +42,7 @@
 {% else %}
     <style type="text/css">
         body {
-            min-height: 2000px;
+            min-height: 720px;
             padding-top: 70px;
         }
     </style>
@@ -83,6 +84,11 @@
     </nav>
 {% endif %}
 {% block body %}{% endblock %}
+<div id="loading" ng-show="isLoading">
+    <div class="animation">
+        <div class="spinner-lg"></div>
+    </div>
+</div>
 {% block javascripts %}
     <!-- jQuery 2.2.1 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
