@@ -552,7 +552,7 @@ $(document).ready(function () {
                             buzzwordConfirmed[entry.card] = true;
                         }
                         if (entry.clicks <= 6) {
-                            wonBuzzwords[entry.card] = entry.card;
+                            wonBuzzwords[entry] = entry;
                             console.log(wonBuzzwords);
                         }
                     });
