@@ -71,10 +71,10 @@ BingoApp.controller('BingoGamesController', function ($scope, $locale, $window, 
      * Get Games Data.
      */
     $scope.getGames = function () {
-        $scope.setLoading(true);
+        //$scope.setLoading(true);
 
         gamesAjax.get('').then(function (response) {
-            $scope.setLoading(false);
+            //$scope.setLoading(false);
 
             if (typeof response.user != 'undefined') {
                 $scope.user = response.user;
@@ -84,7 +84,7 @@ BingoApp.controller('BingoGamesController', function ($scope, $locale, $window, 
                 $scope.games = response.games;
             }
         }, function () {
-            $scope.setLoading(false);
+            //$scope.setLoading(false);
             $scope.messageService.addMessage('danger', 'There was an error getting games data from request!');
         });
     };
@@ -109,7 +109,7 @@ BingoApp.controller('BingoGamesController', function ($scope, $locale, $window, 
         });
     };
 
-    $scope.$on("updateList",function(){
+    $scope.$on('updateList', function () {
         $scope.getGames();
     });
 

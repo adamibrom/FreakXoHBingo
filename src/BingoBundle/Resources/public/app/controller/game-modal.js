@@ -85,10 +85,10 @@ var GameModalInstanceCtrl = function ($scope, $rootScope, $sce, $window, $uibMod
      * @param game
      */
     $scope.modalFormSubmit = function (game) {
-        $scope.setLoading(true);
+        //$scope.setLoading(true);
 
         $scope.gameAjax.post(game).then(function (result) {
-            $scope.setLoading(false);
+            //$scope.setLoading(false);
 
             if (result.status == true) {
                 // @todo Refresh games list
