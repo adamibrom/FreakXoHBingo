@@ -187,9 +187,11 @@ $(document).ready(function () {
                 }
             }else{
                 for (var i = 0; i < config.bingoCard.size; i++) {
+                    $('#cell' + i).removeClass('cell');
                     $('#cell' + i).removeClass('mouseoverbingo'); 
                 }
                 for (var i = 0; i < config.buzzwordCard.size; i++) {
+                    $('#missing' + i).removeClass('missing');
                     $('#missing' + i).removeClass('mouseoverbuzz');
                 }
             }
