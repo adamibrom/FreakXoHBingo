@@ -178,21 +178,40 @@ $(document).ready(function () {
     function toggleCaptionOnOff() {
         if (captionOff) {
             captionOff = false;
-            for (var i = 0; i < config.bingoCard.size; i++) {
-                $('#cell' + i).removeClass('cell');
-            }
-            for (var i = 0; i < config.buzzwordCard.size; i++) {
-                $('#missing' + i).removeClass('missing');
+            if (!playMode) {
+                for (var i = 0; i < config.bingoCard.size; i++) {
+                    $('#cell' + i).removeClass('cell'); 
+                }
+                for (var i = 0; i < config.buzzwordCard.size; i++) {
+                    $('#missing' + i).removeClass('missing');
+                }
+            }else{
+                for (var i = 0; i < config.bingoCard.size; i++) {
+                    $('#cell' + i).removeClass('mouseoverbingo'); 
+                }
+                for (var i = 0; i < config.buzzwordCard.size; i++) {
+                    $('#missing' + i).removeClass('mouseoverbuzz');
+                }
             }
         } else {
             captionOff = true;
             $('#buzzwordText').removeClass('buzzwordTextFilled');
             $('#buzzwordText').html("");
-            for (var i = 0; i < config.bingoCard.size; i++) {
-                $('#cell' + i).addClass('cell');
-            }
-            for (var i = 0; i < config.buzzwordCard.size; i++) {
-                $('#missing' + i).addClass('missing');
+            if (!playMode) {
+
+                for (var i = 0; i < config.bingoCard.size; i++) {
+                    $('#cell' + i).addClass('cell');
+                }
+                for (var i = 0; i < config.buzzwordCard.size; i++) {
+                    $('#missing' + i).addClass('missing');
+                }
+            }else{
+                for (var i = 0; i < config.bingoCard.size; i++) {
+                    $('#cell' + i).addClass('mouseoverbingo'); 
+                }
+                for (var i = 0; i < config.buzzwordCard.size; i++) {
+                    $('#missing' + i).addClass('mouseoverbuzz');
+                }
             }
 
         }
@@ -268,15 +287,15 @@ $(document).ready(function () {
         });
 
         $(document).keydown(function (evt) { // c Taste an captionOff binden
-            if (!playMode) {
+          //  if (!playMode) {
                 if (evt.keyCode == 67) {
                     evt.preventDefault();
                     toggleCaptionOnOff();
                 }
-            }
+          //  }
         });
 
-        $(document).keydown(function (evt) { // c Taste an captionOff binden
+        $(document).keydown(function (evt) { // r Taste an reset binden
             if (!playMode) {
                 if (evt.keyCode == 82) {
                     userRejectedNum = 0;
@@ -288,7 +307,7 @@ $(document).ready(function () {
         });
 
         $('#BingoBody td').mouseover(function () {
-            if (!captionOff && !playMode) {
+            if (!captionOff) {
                 var idx = parseInt($(this).attr('data-img-id'));
                 if (idx != '0') {
                     placeCaptionLeftOfMousecourser = false;
@@ -300,14 +319,14 @@ $(document).ready(function () {
         });
 
         $('#BingoBody td').mouseleave(function () {
-            if (!captionOff && !playMode) {
+            if (!captionOff) {
                 $('#buzzwordText').removeClass('buzzwordTextFilled');
                 $('#buzzwordText').addClass('buzzwordTextEmpty');
             }
         });
 
         $('#BuzzwordsBody td').mouseover(function () {
-            if (!captionOff && !playMode) {
+            if (!captionOff) {
                 var idx = parseInt($(this).attr('data-img-id'));
                 if (!isNaN(idx)) {
                     placeCaptionLeftOfMousecourser = true;
@@ -319,7 +338,7 @@ $(document).ready(function () {
         });
 
         $('#BuzzwordsBody td').mouseleave(function () {
-            if (!captionOff && !playMode) {
+            if (!captionOff) {
                 $('#buzzwordText').removeClass('buzzwordTextFilled');
                 $('#buzzwordText').addClass('buzzwordTextEmpty');
             }
