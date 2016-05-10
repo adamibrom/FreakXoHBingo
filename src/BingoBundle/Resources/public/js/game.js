@@ -32,6 +32,8 @@ $(document).ready(function () {
     var buzzwordConfirmed = new Array(config.buzzwordCount);
     var buzzwordBusy = new Array(config.buzzwordCount);
     var wonBingos = new Array(143);
+    var wonBuzzwords = new Array(0);
+    var intervallBuzzwords = new Array(0);
     var userRejected = new Array(19,88,71,59,8,55,1,20,35,7,31,57,44,4,67,86,52,89);
     var userRejectedNum = userRejected.length;
     var totalScore = 0;
@@ -58,6 +60,12 @@ $(document).ready(function () {
                 e.preventDefault();
             }
         }
+    }
+
+    function contains(arr, obj) {
+      for(var i=0; i<arr.length; i++) {
+        if (arr[i] == obj) return true;
+      }
     }
 
     window.onbeforeunload = goodbye;
@@ -462,7 +470,7 @@ $(document).ready(function () {
         //console.log(buzzwordBusyToNum.length);
 
         // Wenn die Karte noch nicht geklickt wurde und
-        // wenn nicht mehr als 3 Karten gleichzeitig angeklickt wurden, dann
+        // wenn nicht mehr als 6 Karten gleichzeitig angeklickt wurden, dann
         // werden die Klicks an den Server übertragen...
         if (buzzwordBusy[id_img] || buzzwordBusyToNum.length >= 6) {
             return null;
@@ -498,11 +506,26 @@ $(document).ready(function () {
                         if (entry.clicks >= 6) {
                             buzzwordConfirmed[entry.card] = true;
                         }
+                        if (entry.clicks <= 6) {
+                            if (!contains(intervallBuzzwords, entry.card)) {
+                                intervallBuzzwords.push(entry.card);
+                             }
+                             console.log('intervallBuzzwords = ' + intervallBuzzwords);
+                             console.log('entry.clicks = ' + entry.clicks);
+                             console.log('entry.card = ' + entry.card);
+                         } 
                     });
 
                     bingoResponseData.all_clicks.forEach(function (entry) {
                         if (entry.clicks >= 6) {
                             buzzwordConfirmed[entry.card] = true;
+                            // karte aus intervallbuzzwords entfernen wenn all_clicks >6
+                                if (contains(intervallBuzzwords, entry.card)) {
+                                    intervallBuzzwords.splice($.inArray(entry.card, intervallBuzzwords),1);
+                                }
+
+                            console.log('all.clicks = ' + entry.clicks);
+                            console.log('entry.card = ' + entry.card);
                         }
                     });
 
@@ -591,16 +614,32 @@ $(document).ready(function () {
 
             $that.removeClass("pulse-button");
             $that.addClass("gelbe_zelle");
-
+            
             // idx = integerwert der geklickten zelle
             var idx = parseInt($that.attr('data-id'));
 
             // geklickete Zelle in bingoCard true setzen
             if ('BingoBody' == clickSource) {
                 model.bingoCard[idx] = true;
-                checkWin(model.bingoCard);
-                $('#score').html('<div style="width: 198px" id="scoreback">' + pad(totalScore, 6) + '</div>');
             }
+
+            // prüfen ob wonBuzzword Bonuspunkte vergeben werden und sternchen aufs feld setzen
+            if (contains(intervallBuzzwords, id_img)) {
+                  wonBuzzwords.push(id_img);
+                  console.log('intervallBuzzwords = ' + intervallBuzzwords);
+                  console.log('id_img = ' + id_img);
+                  console.log('wonBuzzwords = ' + wonBuzzwords + 'wonBuzzwords = ' + $(wonBuzzwords).size());
+                if ('BuzzwordsBody' == clickSource) {
+                    $that.addClass("sternchenbuzz");
+                } else {
+                    $that.addClass("sternchen");
+                }
+            }
+
+            // gewinnprüfen und score updaten
+            checkWin(model.bingoCard);
+            $('#score').html('<div style="width: 198px" id="scoreback">' + pad(totalScore, 6) + '</div>');
+
 
             buzzwordConfirmed[id_img] = true;
             buzzwordBusy[id_img] = false;
@@ -675,6 +714,7 @@ $(document).ready(function () {
         }, []);
         var i = 1;
         totalScore = 0;
+        totalScore = wonBuzzwords.length * 10;
         $.each(winBoards, function (key, value) {
             if (containsAll(value, convertedToNum)) {
                 wonBingos[i] = key;

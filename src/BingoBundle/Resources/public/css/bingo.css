@@ -339,6 +339,26 @@ li{
     background-size: 75px 75px;
 }
 
+.sternchen:before {
+    content: "";
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    opacity: 0.99;
+    background: url(/bundles/bingo/img/sternchen.svg);
+    background-size: 100px 100px;
+}
+
+.sternchenbuzz:before {
+    content: "";
+    position: absolute;
+    height: 75px;
+    width: 75px;
+    opacity: 0.99;
+    background: url(/bundles/bingo/img/sternchen.svg);
+    background-size: 75px 75px;
+}
+
 .buzzwordTextFilled{
     position: fixed;
     padding-left: 15px;
@@ -384,10 +404,10 @@ li{
     box-shadow: 0 0 0 0 rgba(255, 178, 13, 1);
     border-radius: 3%;
     cursor: pointer;
-    -webkit-animation: pulse 1.5s infinite cubic-bezier(0.1, 0, 0, 1);
-    -moz-animation: pulse 1.5s infinite cubic-bezier(0.1, 0, 0, 1);
-    -ms-animation: pulse 1.5s infinite cubic-bezier(0.1, 0, 0, 1);
-    animation: pulse 1.5s infinite cubic-bezier(0.1, 0, 0, 1);
+    -webkit-animation: pulse 7s infinite cubic-bezier(0.1, 0, 0, 1);
+    -moz-animation: pulse 7s infinite cubic-bezier(0.1, 0, 0, 1);
+    -ms-animation: pulse 7s infinite cubic-bezier(0.1, 0, 0, 1);
+    animation: pulse 7s infinite cubic-bezier(0.1, 0, 0, 1);
 }
 
 @-webkit-keyframes pulse {to {box-shadow: 0 0 0 25px rgba(252, 253, 0, 0);}}
