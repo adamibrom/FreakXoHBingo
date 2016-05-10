@@ -34,29 +34,32 @@
         "doctrine/orm": "2.6.x-dev",
         "doctrine/doctrine-bundle": "1.6.x-dev",
 
+        "friendsofsymfony/rest-bundle": "dev-master",
+        "friendsofsymfony/oauth-server-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "dev-master",
+
+        "incenteev/composer-parameter-handler": "2.1.x-dev",
+        "jms/serializer-bundle": "dev-master",
+
+        "leaseweb/memcache-bundle": "v2.1.8",
+
+        "nelmio/api-doc-bundle": "dev-master",
+
+        "propel/propel1": "1.6.x-dev",
+        "propel/propel-bundle": "1.5.x-dev",
+
+        "sensio/distribution-bundle": "4.0.x-dev",
+        "sensio/framework-extra-bundle": "v3.0.16",
+
+        "swiftmailer/swiftmailer": "5.x-dev",
+
         "symfony/symfony": "2.8.x-dev",
         "symfony/assetic-bundle": "2.7.x-dev",
         "symfony/swiftmailer-bundle": "2.3.x-dev",
         "symfony/monolog-bundle": "2.8.x-dev",
 
-        "sensio/distribution-bundle": "4.0.x-dev",
-        "sensio/framework-extra-bundle": "v3.0.16",
-
-        "incenteev/composer-parameter-handler": "2.1.x-dev",
-
-        "leaseweb/memcache-bundle": "v2.1.8",
-
-        "propel/propel1": "1.6.x-dev",
-        "propel/propel-bundle": "1.5.x-dev",
-
         "willdurand/propel-typehintable-behavior": "dev-master",
-        "willdurand/propel-statemachine-behavior": "dev-master",
-
-        "friendsofsymfony/rest-bundle": "dev-master",
-        "jms/serializer-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "dev-master",
-        "friendsofsymfony/oauth-server-bundle": "dev-master",
-        "nelmio/api-doc-bundle": "dev-master"
+        "willdurand/propel-statemachine-behavior": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "3.0.x-dev",

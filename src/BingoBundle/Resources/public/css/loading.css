@@ -1,5 +1,3 @@
-/* AngularJS App Requirements */
-
 #startup-loading .fa {
     font-size: 8em;
     margin-top: 26%;
@@ -33,7 +31,6 @@
 #startup-loading {
     text-align: center;
     line-height: 100%;
-
     position: fixed;
     z-index: 1150;
     top: 0;
@@ -78,106 +75,67 @@
     opacity: 1;
 }
 
-/** CLICK LIST */
-
-.clicks-list {
-    margin: 0 -10px 20px;
-    overflow: hidden;
+.spinner-lg {
+    margin: 5% auto;
+    width: 100px;
+    height: 100px;
+    border: 6px solid #fff;
+    border-top: 6px solid rgba(0, 0, 0, 0);
+    border-left: 6px solid rgba(0, 0, 0, 0);
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: .8;
+    cursor: wait;
+    -webkit-animation: spinner-loading .5s infinite linear;
+    -moz-animation: spinner-loading .5s infinite linear;
+    animation: spinner-loading .5s infinite linear;
 }
 
-.clicks-list-items {
-    list-style: outside none none;
-    padding-left: 0;
-}
-
-.clicks-list-items li {
-    background-color: #f9f9f9;
-    border: 1px solid #fff;
-    float: left;
-    font-size: 10px;
-    height: 115px;
-    line-height: 1.4;
-    padding: 10px;
-    text-align: center;
-    width: 25%;
-    -webkit-transition: all 0.6s ease-in-out;
-    -moz-transition: all 0.6s ease-in-out;
-    transition: all 0.6s ease-in-out;
-}
-
-.clicks-list-items li:hover {
-    background-color: #563d7c;
-    color: #fff;
-}
-
-.clicks-list .glyphicon {
-    font-size: 24px;
-    margin-bottom: 10px;
-    margin-top: 5px;
-}
-
-.clicks-list .glyphicon-class {
-    display: block;
-    text-align: center;
-    word-wrap: break-word;
-}
-
-@media (min-width: 768px) {
-    .clicks-list {
-        margin-left: 0;
-        margin-right: 0;
+@keyframes spinner-loading {
+    0% {
+        -moz-transform: rotate(0deg);
     }
 
-    .clicks-list li {
-        font-size: 12px;
-        width: 12.5%;
+    100% {
+        -moz-transform: rotate(360deg);
     }
 }
 
-/* AngularJS Animation */
+@-moz-keyframes spinner-loading {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
 
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter,
-.animate-repeat.ng-leave {
-    -webkit-transition:all linear 1.2s;
-    transition:all linear 1.2s;
+    100% {
+        -moz-transform: rotate(360deg);
+    }
 }
 
-.animate-repeat.ng-enter-stagger,
-.animate-repeat.ng-leave-stagger,
-.animate-repeat.ng-move-stagger {
-    /* 700ms will be applied between each successful enter operation */
-    -webkit-transition-delay:0.7s;
-    transition-delay:0.7s;
+@-webkit-keyframes spinner-loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
-.animate-repeat.ng-leave.ng-leave-active,
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter {
-    opacity:0;
+.app-spinner-lg {
+    font-size: 10em;
+    margin: 15px 0 30px;
 }
 
-.animate-repeat.ng-leave,
-.animate-repeat.ng-move.ng-move-active,
-.animate-repeat.ng-enter.ng-enter-active {
-    opacity:1;
+.app-spinner-lg .fa-exclamation-triangle {
+    color: crimson;
 }
 
-/* DRAFT: http://output.jsbin.com/eYiDIKO/4#/ */
-
-#click-list {
-    position: absolute;
-    width: 100%;
-    list-style-type: none;
-    padding-left: 0;
+.panel {
+    -webkit-border-radius: 0;
+    border-radius: 0;
 }
 
-#click-list li {
-    position: absolute;
-    height: 70px;
-    width: 70px;
-    background: #ddd;
-    -webkit-transition: all 2.5s ease-in-out;
-    -moz-transition: all 2.5s ease-in-out;
-    transition: all 2.5s ease-in-out;
+.panel-heading {
+    -webkit-border-radius: 0;
+    border-radius: 0;
 }

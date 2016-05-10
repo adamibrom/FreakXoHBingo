@@ -16,20 +16,24 @@
         }
     </style>
     {% block stylesheets %}
-        {% stylesheets filter='cssrewrite'
-            '@BingoBundle/Resources/public/css/angular.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
         <!-- Font Awesome 4.5.0 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css">
         <!-- Font Awesome Animation 0.0.8 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.8/font-awesome-animation.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Animate.css 3.5.1 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+        {#
+        {% stylesheets filter='cssrewrite'
+            '@BingoBundle/Resources/public/css/angular.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        #}
+        <link rel="stylesheet" href="/bundles/bingo/css/loading.css">
+        <link rel="stylesheet" href="/bundles/bingo/css/angular.css">
     {% endblock %}
 </head>
 <body ng-app="BingoApp">
@@ -38,7 +42,7 @@
 {% else %}
     <style type="text/css">
         body {
-            min-height: 2000px;
+            min-height: 720px;
             padding-top: 70px;
         }
     </style>
@@ -57,6 +61,14 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ path('bingo_start') }}">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form name="player" action="">
+                            <input name="playername" value="{{ player.name }}">
+                            <button type="submit">save</button>
+                        </form>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -80,23 +92,28 @@
     </nav>
 {% endif %}
 {% block body %}{% endblock %}
+<div id="loading" ng-show="isLoading">
+    <div class="animation">
+        <div class="spinner-lg"></div>
+    </div>
+</div>
 {% block javascripts %}
     <!-- jQuery 2.2.1 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <!-- JSON in JavaScript 2015-05-03 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- lodash 3.10.1 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.2/lodash.min.js"></script>
     <!-- AngularJS 1.5.0 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-animate.min.js"></script>
     <!-- Restangular 1.5.2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.5.2/restangular.min.js"></script>
     <!-- Angular UI Bootstrap 1.2.4 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.2/ui-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.2/ui-bootstrap-tpls.min.js"></script>
     {% javascripts
         '@BingoBundle/Resources/public/app/angular-slugify.js'
         '@BingoBundle/Resources/public/app/bingo-app.js'
